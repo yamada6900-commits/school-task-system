@@ -6,6 +6,7 @@
 <title>ระบบจัดการงาน</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -80,6 +81,11 @@ button {
 
 .done {
     background: #3b82f6;
+    color: white;
+}
+
+.edit {
+    background: #f59e0b;
     color: white;
 }
 
@@ -171,74 +177,145 @@ button {
     flex-wrap: wrap;
     gap: 5px;
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="container">
 
     <div class="header">
+
         <h1>📚 ระบบจัดการงาน</h1>
-        <p>จัดการงานและกำหนดส่งของคุณได้ง่าย ๆ</p>
+
+        <p>
+            จัดการงานและกำหนดส่งของคุณได้ง่าย ๆ
+        </p>
+
     </div>
+
 
     <div class="stats">
 
         <div>
-            <div class="stat-number" id="total">0</div>
-            <div>งานทั้งหมด</div>
+            <div
+                class="stat-number"
+                id="total"
+            >
+                0
+            </div>
+
+            <div>
+                งานทั้งหมด
+            </div>
         </div>
 
-        <div>
-            <div class="stat-number" id="completed">0</div>
-            <div>เสร็จแล้ว</div>
-        </div>
 
         <div>
-            <div class="stat-number" id="remaining">0</div>
-            <div>ค้างอยู่</div>
+            <div
+                class="stat-number"
+                id="completed"
+            >
+                0
+            </div>
+
+            <div>
+                เสร็จแล้ว
+            </div>
+        </div>
+
+
+        <div>
+            <div
+                class="stat-number"
+                id="remaining"
+            >
+                0
+            </div>
+
+            <div>
+                ค้างอยู่
+            </div>
         </div>
 
     </div>
 
+
     <div class="box">
 
-        <h2>➕ เพิ่มงานใหม่</h2>
+        <h2>
+            ➕ เพิ่มงานใหม่
+        </h2>
 
-        <label>วิชา</label>
+
+        <label>
+            วิชา
+        </label>
+
         <input
             id="subject"
             type="text"
             placeholder="เช่น คณิตศาสตร์"
         >
 
-        <label>ชื่องาน</label>
+
+        <label>
+            ชื่องาน
+        </label>
+
         <input
             id="task"
             type="text"
             placeholder="เช่น แบบฝึกหัดบทที่ 3"
         >
 
-        <label>วันส่ง</label>
-        <input id="date" type="date">
 
-        <label>เวลาส่ง</label>
-        <input id="time" type="time">
+        <label>
+            วันส่ง
+        </label>
 
-        <button class="save" onclick="addTask()">
+        <input
+            id="date"
+            type="date"
+        >
+
+
+        <label>
+            เวลาส่ง
+        </label>
+
+        <input
+            id="time"
+            type="time"
+        >
+
+
+        <button
+            class="save"
+            onclick="addTask()"
+        >
             💾 บันทึกงาน
         </button>
 
-        <button class="notify" onclick="requestNotification()">
+
+        <button
+            class="notify"
+            onclick="requestNotification()"
+        >
             🔔 เปิดการแจ้งเตือน
         </button>
 
     </div>
 
+
     <div class="box">
 
-        <h2>🔎 ค้นหาและกรองงาน</h2>
+        <h2>
+            🔎 ค้นหาและกรองงาน
+        </h2>
+
 
         <input
             id="search"
@@ -247,6 +324,7 @@ button {
             placeholder="พิมพ์ชื่อวิชาหรืองาน..."
             oninput="showTasks()"
         >
+
 
         <div class="filter-area">
 
@@ -258,6 +336,7 @@ button {
                 📋 ทั้งหมด
             </button>
 
+
             <button
                 id="todoBtn"
                 class="filter"
@@ -266,6 +345,7 @@ button {
                 ⏰ ยังไม่เสร็จ
             </button>
 
+
             <button
                 id="todayBtn"
                 class="filter"
@@ -273,6 +353,7 @@ button {
             >
                 🚨 ส่งวันนี้
             </button>
+
 
             <button
                 id="doneBtn"
@@ -286,7 +367,11 @@ button {
 
     </div>
 
-    <h2>📋 งานของฉัน</h2>
+
+    <h2>
+        📋 งานของฉัน
+    </h2>
+
 
     <div id="taskList"></div>
 
@@ -296,7 +381,10 @@ button {
 <script>
 
 let tasks =
-    JSON.parse(localStorage.getItem("tasks")) || [];
+    JSON.parse(
+        localStorage.getItem("tasks")
+    ) || [];
+
 
 let currentFilter = "all";
 
@@ -314,16 +402,30 @@ function saveTasks() {
 function addTask() {
 
     let subject =
-        document.getElementById("subject").value.trim();
+        document
+        .getElementById("subject")
+        .value
+        .trim();
+
 
     let task =
-        document.getElementById("task").value.trim();
+        document
+        .getElementById("task")
+        .value
+        .trim();
+
 
     let date =
-        document.getElementById("date").value;
+        document
+        .getElementById("date")
+        .value;
+
 
     let time =
-        document.getElementById("time").value;
+        document
+        .getElementById("time")
+        .value;
+
 
     if (
         subject === "" ||
@@ -332,29 +434,150 @@ function addTask() {
         time === ""
     ) {
 
-        alert("กรุณากรอกข้อมูลให้ครบ");
+        alert(
+            "กรุณากรอกข้อมูลให้ครบ"
+        );
+
         return;
 
     }
 
+
     tasks.push({
 
         subject: subject,
+
         task: task,
+
         date: date,
+
         time: time,
+
         completed: false,
+
         notified: false
 
     });
 
+
     saveTasks();
+
     showTasks();
 
-    document.getElementById("subject").value = "";
-    document.getElementById("task").value = "";
-    document.getElementById("date").value = "";
-    document.getElementById("time").value = "";
+
+    document.getElementById(
+        "subject"
+    ).value = "";
+
+
+    document.getElementById(
+        "task"
+    ).value = "";
+
+
+    document.getElementById(
+        "date"
+    ).value = "";
+
+
+    document.getElementById(
+        "time"
+    ).value = "";
+
+}
+
+
+function editTask(index) {
+
+    let item = tasks[index];
+
+
+    let newSubject =
+        prompt(
+            "📚 แก้ไขวิชา",
+            item.subject
+        );
+
+
+    if (newSubject === null) {
+        return;
+    }
+
+
+    let newTask =
+        prompt(
+            "📝 แก้ไขชื่องาน",
+            item.task
+        );
+
+
+    if (newTask === null) {
+        return;
+    }
+
+
+    let newDate =
+        prompt(
+            "📅 แก้ไขวันส่ง (YYYY-MM-DD)",
+            item.date
+        );
+
+
+    if (newDate === null) {
+        return;
+    }
+
+
+    let newTime =
+        prompt(
+            "⏰ แก้ไขเวลาส่ง (HH:MM)",
+            item.time
+        );
+
+
+    if (newTime === null) {
+        return;
+    }
+
+
+    if (
+        newSubject.trim() === "" ||
+        newTask.trim() === "" ||
+        newDate.trim() === "" ||
+        newTime.trim() === ""
+    ) {
+
+        alert(
+            "กรุณากรอกข้อมูลให้ครบ"
+        );
+
+        return;
+
+    }
+
+
+    tasks[index].subject =
+        newSubject.trim();
+
+
+    tasks[index].task =
+        newTask.trim();
+
+
+    tasks[index].date =
+        newDate.trim();
+
+
+    tasks[index].time =
+        newTime.trim();
+
+
+    tasks[index].notified = false;
+
+
+    saveTasks();
+
+    showTasks();
 
 }
 
@@ -363,34 +586,58 @@ function setFilter(filter) {
 
     currentFilter = filter;
 
+
     document
         .querySelectorAll(".filter")
-        .forEach(function(button) {
+        .forEach(
+            function(button) {
 
-            button.classList.remove("active");
+                button.classList
+                    .remove("active");
 
-        });
+            }
+        );
 
 
     if (filter === "all") {
-        document.getElementById("allBtn")
-            .classList.add("active");
+
+        document
+            .getElementById("allBtn")
+            .classList
+            .add("active");
+
     }
+
 
     if (filter === "todo") {
-        document.getElementById("todoBtn")
-            .classList.add("active");
+
+        document
+            .getElementById("todoBtn")
+            .classList
+            .add("active");
+
     }
+
 
     if (filter === "today") {
-        document.getElementById("todayBtn")
-            .classList.add("active");
+
+        document
+            .getElementById("todayBtn")
+            .classList
+            .add("active");
+
     }
 
+
     if (filter === "done") {
-        document.getElementById("doneBtn")
-            .classList.add("active");
+
+        document
+            .getElementById("doneBtn")
+            .classList
+            .add("active");
+
     }
+
 
     showTasks();
 
@@ -400,7 +647,10 @@ function setFilter(filter) {
 function showTasks() {
 
     let list =
-        document.getElementById("taskList");
+        document.getElementById(
+            "taskList"
+        );
+
 
     let search =
         document
@@ -408,66 +658,90 @@ function showTasks() {
         .value
         .toLowerCase();
 
+
     let now = new Date();
 
+
     list.innerHTML = "";
+
 
     updateStats();
 
 
-    let filtered = tasks.filter(function(item) {
+    let filtered =
+        tasks.filter(
+            function(item) {
 
-        let matchesSearch =
+                let matchesSearch =
 
-            item.subject
-                .toLowerCase()
-                .includes(search)
+                    item.subject
+                    .toLowerCase()
+                    .includes(search)
 
-            ||
+                    ||
 
-            item.task
-                .toLowerCase()
-                .includes(search);
-
-
-        if (!matchesSearch) {
-            return false;
-        }
+                    item.task
+                    .toLowerCase()
+                    .includes(search);
 
 
-        if (currentFilter === "todo") {
-            return !item.completed;
-        }
+                if (!matchesSearch) {
+                    return false;
+                }
 
 
-        if (currentFilter === "done") {
-            return item.completed;
-        }
+                if (
+                    currentFilter ===
+                    "todo"
+                ) {
+
+                    return !item.completed;
+
+                }
 
 
-        if (currentFilter === "today") {
+                if (
+                    currentFilter ===
+                    "done"
+                ) {
 
-            let deadline =
-                new Date(
-                    item.date +
-                    "T" +
-                    item.time
-                );
+                    return item.completed;
 
-            return (
-                deadline.toDateString()
-                === now.toDateString()
-            );
-
-        }
+                }
 
 
-        return true;
+                if (
+                    currentFilter ===
+                    "today"
+                ) {
 
-    });
+                    let deadline =
+                        new Date(
+                            item.date +
+                            "T" +
+                            item.time
+                        );
 
 
-    if (filtered.length === 0) {
+                    return (
+                        deadline
+                        .toDateString()
+                        ===
+                        now.toDateString()
+                    );
+
+                }
+
+
+                return true;
+
+            }
+        );
+
+
+    if (
+        filtered.length === 0
+    ) {
 
         list.innerHTML =
             '<div class="empty">📭 ไม่พบงาน</div>';
@@ -477,111 +751,151 @@ function showTasks() {
     }
 
 
-    filtered.forEach(function(item) {
+    filtered.forEach(
+        function(item) {
 
-        let index =
-            tasks.indexOf(item);
-
-        let deadline =
-            new Date(
-                item.date +
-                "T" +
-                item.time
-            );
-
-        let difference =
-            deadline - now;
-
-        let statusClass = "";
-        let badge = "";
+            let index =
+                tasks.indexOf(item);
 
 
-        if (
-            deadline.toDateString()
-            === now.toDateString()
-        ) {
-
-            statusClass = "today";
-
-            badge =
-                '<span class="badge badge-today">🚨 ส่งวันนี้</span>';
-
-        }
-
-        else if (
-            difference > 0 &&
-            difference <=
-            24 * 60 * 60 * 1000
-        ) {
-
-            statusClass = "soon";
-
-            badge =
-                '<span class="badge badge-soon">⚠️ ใกล้ถึงกำหนด</span>';
-
-        }
-
-        else if (item.completed) {
-
-            badge =
-                '<span class="badge badge-normal">✅ เสร็จแล้ว</span>';
-
-        }
+            let deadline =
+                new Date(
+                    item.date +
+                    "T" +
+                    item.time
+                );
 
 
-        let completedClass =
-            item.completed
-            ? "completed"
-            : "";
+            let difference =
+                deadline - now;
 
 
-        list.innerHTML += `
+            let statusClass = "";
 
-            <div class="task ${statusClass} ${completedClass}">
+            let badge = "";
 
-                ${badge}
 
-                <h3>
-                    📚 ${item.subject}
-                </h3>
+            if (
+                deadline.toDateString()
+                ===
+                now.toDateString()
+            ) {
 
-                <p>
-                    📝 ${item.task}
-                </p>
+                statusClass =
+                    "today";
 
-                <p>
-                    📅 วันที่ส่ง: ${item.date}
-                    <br>
-                    ⏰ เวลา: ${item.time}
-                </p>
 
-                ${
-                    item.completed
-                    ?
-                    "<p>🎉 งานนี้เสร็จแล้ว!</p>"
-                    :
-                    `
-                    <button
-                        class="done"
-                        onclick="completeTask(${index})"
-                    >
-                        ✅ ทำเสร็จแล้ว
-                    </button>
-                    `
-                }
+                badge =
+                    '<span class="badge badge-today">🚨 ส่งวันนี้</span>';
 
-                <button
-                    class="delete"
-                    onclick="deleteTask(${index})"
+            }
+
+            else if (
+                difference > 0 &&
+                difference <=
+                24 * 60 * 60 * 1000
+            ) {
+
+                statusClass =
+                    "soon";
+
+
+                badge =
+                    '<span class="badge badge-soon">⚠️ ใกล้ถึงกำหนด</span>';
+
+            }
+
+            else if (
+                item.completed
+            ) {
+
+                badge =
+                    '<span class="badge badge-normal">✅ เสร็จแล้ว</span>';
+
+            }
+
+
+            let completedClass =
+                item.completed
+                ? "completed"
+                : "";
+
+
+            list.innerHTML += `
+
+                <div
+                    class="task
+                    ${statusClass}
+                    ${completedClass}"
                 >
-                    🗑️ ลบ
-                </button>
 
-            </div>
+                    ${badge}
 
-        `;
 
-    });
+                    <h3>
+                        📚 ${item.subject}
+                    </h3>
+
+
+                    <p>
+                        📝 ${item.task}
+                    </p>
+
+
+                    <p>
+
+                        📅 วันที่ส่ง:
+                        ${item.date}
+
+                        <br>
+
+                        ⏰ เวลา:
+                        ${item.time}
+
+                    </p>
+
+
+                    ${
+                        item.completed
+
+                        ?
+
+                        "<p>🎉 งานนี้เสร็จแล้ว!</p>"
+
+                        :
+
+                        `
+                        <button
+                            class="done"
+                            onclick="completeTask(${index})"
+                        >
+                            ✅ ทำเสร็จแล้ว
+                        </button>
+                        `
+                    }
+
+
+                    <button
+                        class="edit"
+                        onclick="editTask(${index})"
+                    >
+                        ✏️ แก้ไข
+                    </button>
+
+
+                    <button
+                        class="delete"
+                        onclick="deleteTask(${index})"
+                    >
+                        🗑️ ลบ
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
 
 }
 
@@ -590,7 +904,9 @@ function completeTask(index) {
 
     tasks[index].completed = true;
 
+
     saveTasks();
+
 
     showTasks();
 
@@ -600,12 +916,16 @@ function completeTask(index) {
 function deleteTask(index) {
 
     if (
-        confirm("ต้องการลบงานนี้หรือไม่?")
+        confirm(
+            "ต้องการลบงานนี้หรือไม่?"
+        )
     ) {
 
         tasks.splice(index, 1);
 
+
         saveTasks();
+
 
         showTasks();
 
@@ -619,29 +939,40 @@ function updateStats() {
     let total =
         tasks.length;
 
+
     let completed =
         tasks.filter(
-            item => item.completed
+            item =>
+            item.completed
         ).length;
+
 
     let remaining =
         total - completed;
 
-    document.getElementById("total")
-        .innerText = total;
 
-    document.getElementById("completed")
-        .innerText = completed;
+    document.getElementById(
+        "total"
+    ).innerText = total;
 
-    document.getElementById("remaining")
-        .innerText = remaining;
+
+    document.getElementById(
+        "completed"
+    ).innerText = completed;
+
+
+    document.getElementById(
+        "remaining"
+    ).innerText = remaining;
 
 }
 
 
 function requestNotification() {
 
-    if (!("Notification" in window)) {
+    if (
+        !("Notification" in window)
+    ) {
 
         alert(
             "เบราว์เซอร์นี้ไม่รองรับการแจ้งเตือน"
@@ -651,95 +982,115 @@ function requestNotification() {
 
     }
 
-    Notification.requestPermission()
-        .then(function(permission) {
 
-            if (permission === "granted") {
+    Notification
+        .requestPermission()
+        .then(
+            function(permission) {
 
-                new Notification(
-                    "🔔 เปิดการแจ้งเตือนแล้ว!"
-                );
+                if (
+                    permission ===
+                    "granted"
+                ) {
+
+                    new Notification(
+                        "🔔 เปิดการแจ้งเตือนแล้ว!"
+                    );
+
+                }
+
+                else {
+
+                    alert(
+                        "กรุณาอนุญาตการแจ้งเตือน"
+                    );
+
+                }
 
             }
-
-            else {
-
-                alert(
-                    "กรุณาอนุญาตการแจ้งเตือน"
-                );
-
-            }
-
-        });
+        );
 
 }
 
 
 function checkDeadline() {
 
-    let now = new Date();
-
-    tasks.forEach(function(item) {
-
-        if (
-            item.completed ||
-            item.notified
-        ) {
-            return;
-        }
-
-        let deadline =
-            new Date(
-                item.date +
-                "T" +
-                item.time
-            );
-
-        let difference =
-            deadline - now;
+    let now =
+        new Date();
 
 
-        if (
-            difference > 0 &&
-            difference <=
-            60 * 60 * 1000
-        ) {
+    tasks.forEach(
+        function(item) {
 
             if (
-                "Notification" in window &&
-                Notification.permission === "granted"
+                item.completed ||
+                item.notified
             ) {
 
-                new Notification(
-                    "🔔 ใกล้ถึงกำหนดส่ง!",
-                    {
-                        body:
-                            item.subject +
-                            " - " +
-                            item.task
-                    }
-                );
+                return;
 
             }
 
-            else {
 
-                alert(
-                    "🔔 ใกล้ถึงกำหนดส่ง!\n\n" +
-                    item.subject +
-                    "\n" +
-                    item.task
+            let deadline =
+                new Date(
+                    item.date +
+                    "T" +
+                    item.time
                 );
 
+
+            let difference =
+                deadline - now;
+
+
+            if (
+                difference > 0 &&
+                difference <=
+                60 * 60 * 1000
+            ) {
+
+                if (
+                    "Notification"
+                    in window &&
+                    Notification.permission
+                    ===
+                    "granted"
+                ) {
+
+                    new Notification(
+                        "🔔 ใกล้ถึงกำหนดส่ง!",
+                        {
+                            body:
+                                item.subject +
+                                " - " +
+                                item.task
+                        }
+                    );
+
+                }
+
+                else {
+
+                    alert(
+                        "🔔 ใกล้ถึงกำหนดส่ง!\n\n" +
+                        item.subject +
+                        "\n" +
+                        item.task
+                    );
+
+                }
+
+
+                item.notified = true;
+
+
+                saveTasks();
+
             }
-
-            item.notified = true;
-
-            saveTasks();
 
         }
-
-    });
+    );
 
 }
 
