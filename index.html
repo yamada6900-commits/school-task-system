@@ -14,99 +14,26 @@
 
 body {
     margin: 0;
+    padding: 20px;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #dbeafe, #fce7f3);
-    min-height: 100vh;
-    padding: 20px;
 }
 
 .container {
-    max-width: 850px;
+    max-width: 800px;
     margin: auto;
 }
 
-.header {
+h1, h2 {
     text-align: center;
-    margin-bottom: 20px;
 }
 
-.header h1 {
-    margin-bottom: 5px;
-}
-
-.header p {
-    color: #666;
-}
-
-
-/* กล่อง */
-
-.box,
-.card,
-.task,
-.calendar {
+.box {
     background: white;
     padding: 20px;
-    margin-bottom: 15px;
+    margin: 15px 0;
     border-radius: 18px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-}
-
-
-/* Dashboard */
-
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 15px;
-}
-
-.card {
-    margin: 0;
-}
-
-.card-title {
-    color: #666;
-    font-size: 14px;
-}
-
-.card-number {
-    font-size: 30px;
-    font-weight: bold;
-    margin-top: 5px;
-}
-
-.card-icon {
-    font-size: 28px;
-}
-
-
-/* progress */
-
-.progress-box {
-    margin-top: 12px;
-}
-
-.progress {
-    height: 12px;
-    background: #e5e7eb;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.progress-bar {
-    height: 100%;
-    width: 0%;
-    background: #22c55e;
-    transition: 0.3s;
-}
-
-
-/* input */
-
-label {
-    font-weight: bold;
 }
 
 input {
@@ -118,22 +45,18 @@ input {
     font-size: 16px;
 }
 
-
-/* buttons */
-
 button {
-    padding: 11px 16px;
+    padding: 11px 15px;
     margin: 4px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 15px;
 }
 
 .save {
+    width: 100%;
     background: #22c55e;
     color: white;
-    width: 100%;
 }
 
 .done {
@@ -151,106 +74,44 @@ button {
     color: white;
 }
 
-.notify {
-    background: #8b5cf6;
-    color: white;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.filter {
-    background: #e5e7eb;
-    color: #333;
-}
-
-.filter.active {
-    background: #111827;
-    color: white;
-}
-
-
-/* งานใกล้ส่ง */
-
-.urgent {
-    border-left: 6px solid #ef4444;
-}
-
-.urgent h3 {
-    margin-top: 0;
-}
-
-.no-urgent {
-    text-align: center;
-    color: #777;
-    padding: 15px;
-}
-
-
-/* งาน */
-
-.task h3 {
-    margin-top: 0;
+.task {
+    background: white;
+    padding: 18px;
+    margin: 12px 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
 }
 
 .completed {
-    text-decoration: line-through;
     opacity: 0.5;
+    text-decoration: line-through;
 }
 
-.task.today {
-    border-left: 6px solid #ef4444;
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 
-.task.soon {
-    border-left: 6px solid #f59e0b;
+.stat {
+    text-align: center;
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
 }
 
-
-/* badge */
-
-.badge {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 8px;
-    font-size: 13px;
-    margin-bottom: 8px;
+.number {
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.badge-today {
-    background: #fee2e2;
-    color: #b91c1c;
-}
-
-.badge-soon {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.badge-normal {
-    background: #dcfce7;
-    color: #166534;
-}
-
-
-/* filter */
-
-.filter-area {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-
-/* calendar */
-
-.calendar-header {
+.calendar-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
 }
 
-.calendar-header button {
+.calendar-head button {
     background: #e5e7eb;
 }
 
@@ -269,86 +130,39 @@ button {
 .weekday {
     text-align: center;
     font-weight: bold;
-    padding: 8px 2px;
-    font-size: 13px;
+    padding: 8px 0;
 }
 
 .day {
-    min-height: 65px;
+    min-height: 60px;
+    background: #f8fafc;
     padding: 6px;
     border-radius: 10px;
-    background: #f8fafc;
     cursor: pointer;
 }
 
 .day:hover {
-    background: #e0f2fe;
+    background: #dbeafe;
 }
 
-.empty-day {
-    background: transparent;
-    cursor: default;
-}
-
-.day.today {
+.today {
     border: 2px solid #3b82f6;
 }
 
-.day.selected {
-    background: #dbeafe;
-    border: 2px solid #2563eb;
-}
-
-.day-number {
-    font-weight: bold;
-}
-
-.task-dot {
-    margin-top: 5px;
-    font-size: 10px;
+.has-task {
     color: #ef4444;
-    overflow: hidden;
-    white-space: nowrap;
+    font-size: 11px;
+    margin-top: 5px;
 }
 
-.selected-date {
-    margin-top: 15px;
-    padding: 12px;
-    background: #f8fafc;
-    border-radius: 10px;
+.selected {
+    background: #bfdbfe;
 }
-
-
-/* empty */
 
 .empty {
     text-align: center;
     color: #777;
     padding: 20px;
-}
-
-
-/* mobile */
-
-@media (max-width: 600px) {
-
-    body {
-        padding: 10px;
-    }
-
-    .dashboard {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .card-number {
-        font-size: 24px;
-    }
-
-    .day {
-        min-height: 55px;
-        font-size: 12px;
-    }
-
 }
 
 </style>
@@ -359,149 +173,34 @@ button {
 
 <div class="container">
 
+<h1>📚 ระบบจัดการงาน</h1>
 
-<!-- HEADER -->
+<p style="text-align:center;">
+ผู้ช่วยจัดการการบ้านของคุณ
+</p>
 
-<div class="header">
 
-    <h1>
-        📚 ระบบจัดการงาน
-    </h1>
+<!-- สถิติ -->
 
-    <p>
-        ผู้ช่วยจัดการการบ้านของคุณ
-    </p>
+<div class="stats">
 
+<div class="stat">
+<div>📝</div>
+<div class="number" id="total">0</div>
+<div>งานทั้งหมด</div>
 </div>
 
-
-<!-- DASHBOARD -->
-
-<h2>
-    🏠 ภาพรวม
-</h2>
-
-
-<div class="dashboard">
-
-
-    <div class="card">
-
-        <div class="card-icon">
-            📝
-        </div>
-
-        <div class="card-title">
-            งานทั้งหมด
-        </div>
-
-        <div
-            class="card-number"
-            id="total"
-        >
-            0
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-icon">
-            ⏰
-        </div>
-
-        <div class="card-title">
-            งานค้าง
-        </div>
-
-        <div
-            class="card-number"
-            id="remaining"
-        >
-            0
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-icon">
-            🚨
-        </div>
-
-        <div class="card-title">
-            ส่งวันนี้
-        </div>
-
-        <div
-            class="card-number"
-            id="todayCount"
-        >
-            0
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-icon">
-            ✅
-        </div>
-
-        <div class="card-title">
-            เสร็จแล้ว
-        </div>
-
-        <div
-            class="card-number"
-            id="completed"
-        >
-            0
-        </div>
-
-    </div>
-
+<div class="stat">
+<div>⏰</div>
+<div class="number" id="remaining">0</div>
+<div>งานค้าง</div>
 </div>
 
-
-<!-- PROGRESS -->
-
-<div class="box progress-box">
-
-    <b>
-        📊 ความคืบหน้าการทำงาน
-    </b>
-
-    <p id="progressText">
-        0% เสร็จแล้ว
-    </p>
-
-    <div class="progress">
-
-        <div
-            class="progress-bar"
-            id="progressBar"
-        >
-        </div>
-
-    </div>
-
+<div class="stat">
+<div>✅</div>
+<div class="number" id="completed">0</div>
+<div>เสร็จแล้ว</div>
 </div>
-
-
-<!-- งานใกล้ส่ง -->
-
-<div class="box urgent">
-
-    <h2>
-        🚨 งานที่ใกล้ถึงกำหนด
-    </h2>
-
-    <div id="urgentTask">
-    </div>
 
 </div>
 
@@ -510,201 +209,124 @@ button {
 
 <div class="box">
 
-    <h2>
-        ➕ เพิ่มงานใหม่
-    </h2>
+<h2>➕ เพิ่มงานใหม่</h2>
+
+<label>วิชา</label>
+
+<input
+id="subject"
+type="text"
+placeholder="เช่น คณิตศาสตร์"
+>
 
 
-    <label>
-        วิชา
-    </label>
+<label>ชื่องาน</label>
 
-    <input
-        id="subject"
-        type="text"
-        placeholder="เช่น คณิตศาสตร์"
-    >
+<input
+id="task"
+type="text"
+placeholder="เช่น แบบฝึกหัดบทที่ 3"
+>
 
 
-    <label>
-        ชื่องาน
-    </label>
+<label>วันส่ง</label>
 
-    <input
-        id="task"
-        type="text"
-        placeholder="เช่น แบบฝึกหัดบทที่ 3"
-    >
+<input
+id="date"
+type="date"
+>
 
 
-    <label>
-        วันส่ง
-    </label>
+<label>เวลาส่ง</label>
 
-    <input
-        id="date"
-        type="date"
-    >
+<input
+id="time"
+type="time"
+>
 
 
-    <label>
-        เวลาส่ง
-    </label>
-
-    <input
-        id="time"
-        type="time"
-    >
-
-
-    <button
-        class="save"
-        onclick="addTask()"
-    >
-        💾 บันทึกงาน
-    </button>
-
-
-    <button
-        class="notify"
-        onclick="requestNotification()"
-    >
-        🔔 เปิดการแจ้งเตือน
-    </button>
+<button
+class="save"
+onclick="addTask()"
+>
+💾 บันทึกงาน
+</button>
 
 </div>
 
 
 <!-- ปฏิทิน -->
 
-<div class="calendar">
+<div class="box">
 
-    <h2>
-        📅 ปฏิทินงาน
-    </h2>
+<h2>📅 ปฏิทินงาน</h2>
 
+<div class="calendar-head">
 
-    <div class="calendar-header">
+<button onclick="changeMonth(-1)">
+◀
+</button>
 
-        <button
-            onclick="previousMonth()"
-        >
-            ◀
-        </button>
+<div
+id="calendarTitle"
+class="calendar-title"
+>
+</div>
 
-
-        <div
-            id="calendarTitle"
-            class="calendar-title"
-        >
-        </div>
-
-
-        <button
-            onclick="nextMonth()"
-        >
-            ▶
-        </button>
-
-    </div>
-
-
-    <div class="weekdays">
-
-        <div class="weekday">อา.</div>
-        <div class="weekday">จ.</div>
-        <div class="weekday">อ.</div>
-        <div class="weekday">พ.</div>
-        <div class="weekday">พฤ.</div>
-        <div class="weekday">ศ.</div>
-        <div class="weekday">ส.</div>
-
-    </div>
-
-
-    <div
-        id="calendarGrid"
-        class="calendar-grid"
-    >
-    </div>
-
-
-    <div
-        id="selectedDate"
-        class="selected-date"
-    >
-        👆 กดวันที่ในปฏิทินเพื่อดูงาน
-    </div>
+<button onclick="changeMonth(1)">
+▶
+</button>
 
 </div>
 
 
-<!-- ค้นหา -->
+<div class="weekdays">
+
+<div class="weekday">อา</div>
+<div class="weekday">จ</div>
+<div class="weekday">อ</div>
+<div class="weekday">พ</div>
+<div class="weekday">พฤ</div>
+<div class="weekday">ศ</div>
+<div class="weekday">ส</div>
+
+</div>
+
+
+<div
+id="calendar"
+class="calendar-grid"
+>
+</div>
+
+
+<div
+id="selectedInfo"
+style="margin-top:15px;"
+>
+กดวันที่เพื่อดูงาน
+</div>
+
+</div>
+
+
+<!-- รายการงาน -->
 
 <div class="box">
 
-    <h2>
-        🔎 ค้นหาและกรองงาน
-    </h2>
+<h2>📋 งานของฉัน</h2>
 
-
-    <input
-        id="search"
-        type="text"
-        placeholder="พิมพ์ชื่อวิชาหรืองาน..."
-        oninput="showTasks()"
-    >
-
-
-    <div class="filter-area">
-
-        <button
-            id="allBtn"
-            class="filter active"
-            onclick="setFilter('all')"
-        >
-            📋 ทั้งหมด
-        </button>
-
-
-        <button
-            id="todoBtn"
-            class="filter"
-            onclick="setFilter('todo')"
-        >
-            ⏰ ยังไม่เสร็จ
-        </button>
-
-
-        <button
-            id="todayBtn"
-            class="filter"
-            onclick="setFilter('today')"
-        >
-            🚨 ส่งวันนี้
-        </button>
-
-
-        <button
-            id="doneBtn"
-            class="filter"
-            onclick="setFilter('done')"
-        >
-            ✅ เสร็จแล้ว
-        </button>
-
-    </div>
+<input
+id="search"
+type="text"
+placeholder="🔎 ค้นหางาน..."
+oninput="showTasks()"
+>
 
 </div>
 
 
-<h2>
-    📋 งานของฉัน
-</h2>
-
-
-<div id="taskList">
-</div>
+<div id="taskList"></div>
 
 
 </div>
@@ -714,1305 +336,717 @@ button {
 
 
 /* =========================
-   DATA
+   ข้อมูล
 ========================= */
 
 let tasks =
-    JSON.parse(
-        localStorage.getItem("tasks")
-    ) || [];
+JSON.parse(
+localStorage.getItem("tasks")
+) || [];
 
-
-let currentFilter = "all";
 
 let calendarDate =
-    new Date();
-
-let selectedDate = null;
+new Date();
 
 
 /* =========================
-   SAVE
+   บันทึก
 ========================= */
 
 function saveTasks() {
 
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
+localStorage.setItem(
+"tasks",
+JSON.stringify(tasks)
+);
 
 }
 
 
 /* =========================
-   ADD
+   เพิ่มงาน
 ========================= */
 
 function addTask() {
 
-    let subject =
-        document
-        .getElementById("subject")
-        .value
-        .trim();
+let subject =
+document.getElementById(
+"subject"
+).value.trim();
 
 
-    let task =
-        document
-        .getElementById("task")
-        .value
-        .trim();
+let task =
+document.getElementById(
+"task"
+).value.trim();
 
 
-    let date =
-        document
-        .getElementById("date")
-        .value;
+let date =
+document.getElementById(
+"date"
+).value;
 
 
-    let time =
-        document
-        .getElementById("time")
-        .value;
+let time =
+document.getElementById(
+"time"
+).value;
 
 
-    if (
-        subject === "" ||
-        task === "" ||
-        date === "" ||
-        time === ""
-    ) {
+if (
+subject === "" ||
+task === "" ||
+date === "" ||
+time === ""
+) {
 
-        alert(
-            "กรุณากรอกข้อมูลให้ครบ"
-        );
+alert("กรุณากรอกข้อมูลให้ครบ");
 
-        return;
+return;
 
-    }
+}
 
 
-    tasks.push({
+tasks.push({
 
-        subject: subject,
+subject: subject,
 
-        task: task,
+task: task,
 
-        date: date,
+date: date,
 
-        time: time,
+time: time,
 
-        completed: false,
+completed: false
 
-        notified: false
-
-    });
+});
 
 
-    saveTasks();
+saveTasks();
 
-    showTasks();
+showTasks();
 
-    renderCalendar();
-
-    updateDashboard();
+drawCalendar();
 
 
-    document.getElementById(
-        "subject"
-    ).value = "";
+document.getElementById(
+"subject"
+).value = "";
 
 
-    document.getElementById(
-        "task"
-    ).value = "";
+document.getElementById(
+"task"
+).value = "";
 
 
-    document.getElementById(
-        "date"
-    ).value = "";
+document.getElementById(
+"date"
+).value = "";
 
 
-    document.getElementById(
-        "time"
-    ).value = "";
+document.getElementById(
+"time"
+).value = "";
 
 }
 
 
 /* =========================
-   EDIT
-========================= */
-
-function editTask(index) {
-
-    let item =
-        tasks[index];
-
-
-    let newSubject =
-        prompt(
-            "📚 แก้ไขวิชา",
-            item.subject
-        );
-
-
-    if (
-        newSubject === null
-    ) return;
-
-
-    let newTask =
-        prompt(
-            "📝 แก้ไขชื่องาน",
-            item.task
-        );
-
-
-    if (
-        newTask === null
-    ) return;
-
-
-    let newDate =
-        prompt(
-            "📅 แก้ไขวันส่ง",
-            item.date
-        );
-
-
-    if (
-        newDate === null
-    ) return;
-
-
-    let newTime =
-        prompt(
-            "⏰ แก้ไขเวลาส่ง",
-            item.time
-        );
-
-
-    if (
-        newTime === null
-    ) return;
-
-
-    tasks[index].subject =
-        newSubject.trim();
-
-
-    tasks[index].task =
-        newTask.trim();
-
-
-    tasks[index].date =
-        newDate.trim();
-
-
-    tasks[index].time =
-        newTime.trim();
-
-
-    tasks[index].notified =
-        false;
-
-
-    saveTasks();
-
-    showTasks();
-
-    renderCalendar();
-
-    updateDashboard();
-
-}
-
-
-/* =========================
-   COMPLETE
-========================= */
-
-function completeTask(index) {
-
-    tasks[index].completed =
-        true;
-
-
-    saveTasks();
-
-    showTasks();
-
-    renderCalendar();
-
-    updateDashboard();
-
-}
-
-
-/* =========================
-   DELETE
-========================= */
-
-function deleteTask(index) {
-
-    if (
-        confirm(
-            "ต้องการลบงานนี้หรือไม่?"
-        )
-    ) {
-
-        tasks.splice(
-            index,
-            1
-        );
-
-
-        saveTasks();
-
-        showTasks();
-
-        renderCalendar();
-
-        updateDashboard();
-
-    }
-
-}
-
-
-/* =========================
-   DASHBOARD
-========================= */
-
-function updateDashboard() {
-
-    let total =
-        tasks.length;
-
-
-    let completed =
-        tasks.filter(
-            item =>
-            item.completed
-        ).length;
-
-
-    let remaining =
-        total -
-        completed;
-
-
-    let today =
-        new Date();
-
-
-    let todayString =
-        today
-        .toISOString()
-        .split("T")[0];
-
-
-    let todayCount =
-        tasks.filter(
-            item =>
-            item.date ===
-            todayString &&
-            !item.completed
-        ).length;
-
-
-    document.getElementById(
-        "total"
-    ).innerText =
-        total;
-
-
-    document.getElementById(
-        "completed"
-    ).innerText =
-        completed;
-
-
-    document.getElementById(
-        "remaining"
-    ).innerText =
-        remaining;
-
-
-    document.getElementById(
-        "todayCount"
-    ).innerText =
-        todayCount;
-
-
-    let percent =
-        total === 0
-        ? 0
-        : Math.round(
-            (completed / total) * 100
-        );
-
-
-    document.getElementById(
-        "progressBar"
-    ).style.width =
-        percent + "%";
-
-
-    document.getElementById(
-        "progressText"
-    ).innerText =
-        percent +
-        "% เสร็จแล้ว";
-
-
-    showUrgentTask();
-
-}
-
-
-/* =========================
-   URGENT
-========================= */
-
-function showUrgentTask() {
-
-    let box =
-        document.getElementById(
-            "urgentTask"
-        );
-
-
-    let now =
-        new Date();
-
-
-    let unfinished =
-        tasks.filter(
-            item =>
-            !item.completed
-        );
-
-
-    if (
-        unfinished.length === 0
-    ) {
-
-        box.innerHTML =
-            `
-            <div class="no-urgent">
-                🎉 ไม่มีงานค้างแล้ว!
-            </div>
-            `;
-
-        return;
-
-    }
-
-
-    unfinished.sort(
-        function(a,b) {
-
-            let dateA =
-                new Date(
-                    a.date +
-                    "T" +
-                    a.time
-                );
-
-
-            let dateB =
-                new Date(
-                    b.date +
-                    "T" +
-                    b.time
-                );
-
-
-            return dateA - dateB;
-
-        }
-    );
-
-
-    let item =
-        unfinished[0];
-
-
-    let deadline =
-        new Date(
-            item.date +
-            "T" +
-            item.time
-        );
-
-
-    let difference =
-        deadline - now;
-
-
-    let message = "";
-
-
-    if (
-        difference < 0
-    ) {
-
-        message =
-            "🔴 เลยกำหนดส่งแล้ว";
-
-    }
-
-    else if (
-        deadline.toDateString()
-        ===
-        now.toDateString()
-    ) {
-
-        message =
-            "🚨 ต้องส่งวันนี้!";
-
-    }
-
-    else {
-
-        let days =
-            Math.ceil(
-                difference /
-                (1000 * 60 * 60 * 24)
-            );
-
-
-        message =
-            "⏰ เหลือประมาณ " +
-            days +
-            " วัน";
-
-    }
-
-
-    box.innerHTML = `
-
-        <h3>
-            📚 ${item.subject}
-        </h3>
-
-        <p>
-            📝 ${item.task}
-        </p>
-
-        <p>
-            📅 ${item.date}
-            <br>
-            ⏰ ${item.time}
-        </p>
-
-        <strong>
-            ${message}
-        </strong>
-
-    `;
-
-}
-
-
-/* =========================
-   FILTER
-========================= */
-
-function setFilter(filter) {
-
-    currentFilter =
-        filter;
-
-
-    document
-        .querySelectorAll(
-            ".filter"
-        )
-        .forEach(
-            function(button) {
-
-                button.classList
-                    .remove("active");
-
-            }
-        );
-
-
-    let buttonId =
-        filter === "all"
-        ? "allBtn"
-        : filter === "todo"
-        ? "todoBtn"
-        : filter === "today"
-        ? "todayBtn"
-        : "doneBtn";
-
-
-    document
-        .getElementById(
-            buttonId
-        )
-        .classList
-        .add("active");
-
-
-    showTasks();
-
-}
-
-
-/* =========================
-   SHOW TASKS
+   แสดงงาน
 ========================= */
 
 function showTasks() {
 
-    let list =
-        document.getElementById(
-            "taskList"
-        );
+let list =
+document.getElementById(
+"taskList"
+);
 
 
-    let search =
-        document
-        .getElementById("search")
-        .value
-        .toLowerCase();
+let search =
+document.getElementById(
+"search"
+).value.toLowerCase();
 
 
-    let now =
-        new Date();
+list.innerHTML = "";
 
 
-    list.innerHTML =
-        "";
+let filtered =
+tasks.filter(function(item) {
 
+return (
 
-    let filtered =
-        tasks.filter(
-            function(item) {
+item.subject
+.toLowerCase()
+.includes(search)
 
-                let matchSearch =
+||
 
-                    item.subject
-                    .toLowerCase()
-                    .includes(search)
+item.task
+.toLowerCase()
+.includes(search)
 
-                    ||
+);
 
-                    item.task
-                    .toLowerCase()
-                    .includes(search);
+});
 
 
-                if (
-                    !matchSearch
-                ) {
+if (
+filtered.length === 0
+) {
 
-                    return false;
+list.innerHTML =
+`
+<div class="box empty">
+📭 ยังไม่มีงาน
+</div>
+`;
 
-                }
+updateStats();
 
+return;
 
-                if (
-                    currentFilter ===
-                    "todo"
-                ) {
+}
 
-                    return !item.completed;
 
-                }
+filtered.forEach(
+function(item) {
 
+let index =
+tasks.indexOf(item);
 
-                if (
-                    currentFilter ===
-                    "done"
-                ) {
 
-                    return item.completed;
+let completed =
+item.completed
+? "completed"
+: "";
 
-                }
 
+list.innerHTML += `
 
-                if (
-                    currentFilter ===
-                    "today"
-                ) {
+<div class="task ${completed}">
 
-                    let d =
-                        new Date(
-                            item.date +
-                            "T" +
-                            item.time
-                        );
+<h3>
+📚 ${item.subject}
+</h3>
 
+<p>
+📝 ${item.task}
+</p>
 
-                    return (
-                        d.toDateString()
-                        ===
-                        now.toDateString()
-                    );
+<p>
+📅 ${item.date}
+<br>
+⏰ ${item.time}
+</p>
 
-                }
 
+${
+item.completed
+?
+"<p>🎉 ทำเสร็จแล้ว!</p>"
+:
+`
+<button
+class="done"
+onclick="completeTask(${index})"
+>
+✅ ทำเสร็จแล้ว
+</button>
+`
+}
 
-                return true;
 
-            }
-        );
+<button
+class="edit"
+onclick="editTask(${index})"
+>
+✏️ แก้ไข
+</button>
 
 
-    if (
-        filtered.length === 0
-    ) {
+<button
+class="delete"
+onclick="deleteTask(${index})"
+>
+🗑️ ลบ
+</button>
 
-        list.innerHTML =
-            `
-            <div class="empty">
-                📭 ไม่พบงาน
-            </div>
-            `;
+</div>
 
-        return;
+`;
 
-    }
+}
 
+);
 
-    filtered.forEach(
-        function(item) {
 
-            let index =
-                tasks.indexOf(item);
-
-
-            let deadline =
-                new Date(
-                    item.date +
-                    "T" +
-                    item.time
-                );
-
-
-            let difference =
-                deadline - now;
-
-
-            let status =
-                "";
-
-
-            let badge =
-                "";
-
-
-            if (
-                deadline.toDateString()
-                ===
-                now.toDateString()
-            ) {
-
-                status =
-                    "today";
-
-
-                badge =
-                    `
-                    <span class="badge badge-today">
-                        🚨 ส่งวันนี้
-                    </span>
-                    `;
-
-            }
-
-            else if (
-                difference > 0 &&
-                difference <=
-                86400000
-            ) {
-
-                status =
-                    "soon";
-
-
-                badge =
-                    `
-                    <span class="badge badge-soon">
-                        ⚠️ ใกล้ถึงกำหนด
-                    </span>
-                    `;
-
-            }
-
-
-            let completed =
-                item.completed
-                ? "completed"
-                : "";
-
-
-            list.innerHTML += `
-
-                <div
-                    class="task
-                    ${status}
-                    ${completed}"
-                >
-
-                    ${badge}
-
-                    <h3>
-                        📚 ${item.subject}
-                    </h3>
-
-                    <p>
-                        📝 ${item.task}
-                    </p>
-
-                    <p>
-                        📅 ${item.date}
-                        <br>
-                        ⏰ ${item.time}
-                    </p>
-
-                    ${
-                        item.completed
-                        ?
-                        "<p>🎉 งานนี้เสร็จแล้ว!</p>"
-                        :
-                        `
-                        <button
-                            class="done"
-                            onclick="completeTask(${index})"
-                        >
-                            ✅ ทำเสร็จแล้ว
-                        </button>
-                        `
-                    }
-
-                    <button
-                        class="edit"
-                        onclick="editTask(${index})"
-                    >
-                        ✏️ แก้ไข
-                    </button>
-
-                    <button
-                        class="delete"
-                        onclick="deleteTask(${index})"
-                    >
-                        🗑️ ลบ
-                    </button>
-
-                </div>
-
-            `;
-
-        }
-    );
+updateStats();
 
 }
 
 
 /* =========================
-   NOTIFICATION
+   สถิติ
 ========================= */
 
-function requestNotification() {
+function updateStats() {
 
-    if (
-        !("Notification" in window)
-    ) {
-
-        alert(
-            "เบราว์เซอร์นี้ไม่รองรับ"
-        );
-
-        return;
-
-    }
+let total =
+tasks.length;
 
 
-    Notification
-        .requestPermission()
-        .then(
-            function(permission) {
+let completed =
+tasks.filter(
+item => item.completed
+).length;
 
-                if (
-                    permission ===
-                    "granted"
-                ) {
 
-                    new Notification(
-                        "🔔 เปิดการแจ้งเตือนแล้ว!"
-                    );
+let remaining =
+total - completed;
 
-                }
 
-            }
-        );
+document.getElementById(
+"total"
+).innerText =
+total;
+
+
+document.getElementById(
+"completed"
+).innerText =
+completed;
+
+
+document.getElementById(
+"remaining"
+).innerText =
+remaining;
 
 }
 
 
 /* =========================
-   CHECK DEADLINE
+   ทำเสร็จ
 ========================= */
 
-function checkDeadline() {
+function completeTask(index) {
 
-    let now =
-        new Date();
-
-
-    tasks.forEach(
-        function(item) {
-
-            if (
-                item.completed ||
-                item.notified
-            ) {
-
-                return;
-
-            }
+tasks[index].completed =
+true;
 
 
-            let deadline =
-                new Date(
-                    item.date +
-                    "T" +
-                    item.time
-                );
+saveTasks();
 
+showTasks();
 
-            let difference =
-                deadline -
-                now;
-
-
-            if (
-                difference > 0 &&
-                difference <=
-                3600000
-            ) {
-
-                if (
-                    "Notification"
-                    in window &&
-                    Notification.permission
-                    ===
-                    "granted"
-                ) {
-
-                    new Notification(
-                        "🔔 ใกล้ถึงกำหนดส่ง!",
-                        {
-                            body:
-                                item.subject +
-                                " - " +
-                                item.task
-                        }
-                    );
-
-                }
-
-                else {
-
-                    alert(
-                        "🔔 ใกล้ถึงกำหนดส่ง!\n\n" +
-                        item.subject +
-                        "\n" +
-                        item.task
-                    );
-
-                }
-
-
-                item.notified =
-                    true;
-
-
-                saveTasks();
-
-            }
-
-        }
-    );
+drawCalendar();
 
 }
 
 
 /* =========================
-   CALENDAR
+   ลบ
 ========================= */
 
-const thaiMonths = [
+function deleteTask(index) {
 
-    "มกราคม",
-    "กุมภาพันธ์",
-    "มีนาคม",
-    "เมษายน",
-    "พฤษภาคม",
-    "มิถุนายน",
-    "กรกฎาคม",
-    "สิงหาคม",
-    "กันยายน",
-    "ตุลาคม",
-    "พฤศจิกายน",
-    "ธันวาคม"
+if (
+confirm("ต้องการลบงานนี้หรือไม่?")
+) {
+
+tasks.splice(index,1);
+
+saveTasks();
+
+showTasks();
+
+drawCalendar();
+
+}
+
+}
+
+
+/* =========================
+   แก้ไข
+========================= */
+
+function editTask(index) {
+
+let item =
+tasks[index];
+
+
+let subject =
+prompt(
+"📚 วิชา",
+item.subject
+);
+
+
+if (subject === null)
+return;
+
+
+let task =
+prompt(
+"📝 ชื่องาน",
+item.task
+);
+
+
+if (task === null)
+return;
+
+
+let date =
+prompt(
+"📅 วันส่ง YYYY-MM-DD",
+item.date
+);
+
+
+if (date === null)
+return;
+
+
+let time =
+prompt(
+"⏰ เวลา HH:MM",
+item.time
+);
+
+
+if (time === null)
+return;
+
+
+if (
+subject.trim() === "" ||
+task.trim() === "" ||
+date.trim() === "" ||
+time.trim() === ""
+) {
+
+alert(
+"กรุณากรอกข้อมูลให้ครบ"
+);
+
+return;
+
+}
+
+
+tasks[index].subject =
+subject.trim();
+
+
+tasks[index].task =
+task.trim();
+
+
+tasks[index].date =
+date.trim();
+
+
+tasks[index].time =
+time.trim();
+
+
+saveTasks();
+
+showTasks();
+
+drawCalendar();
+
+}
+
+
+/* =========================
+   ปฏิทิน
+========================= */
+
+let months = [
+
+"มกราคม",
+"กุมภาพันธ์",
+"มีนาคม",
+"เมษายน",
+"พฤษภาคม",
+"มิถุนายน",
+"กรกฎาคม",
+"สิงหาคม",
+"กันยายน",
+"ตุลาคม",
+"พฤศจิกายน",
+"ธันวาคม"
 
 ];
 
 
-function formatDate(
-    year,
-    month,
-    day
+function dateString(
+year,
+month,
+day
 ) {
 
-    return (
-        year +
-        "-" +
-        String(month + 1)
-        .padStart(2,"0") +
-        "-" +
-        String(day)
-        .padStart(2,"0")
-    );
+return (
+
+year +
+"-" +
+String(month + 1)
+.padStart(2,"0") +
+"-" +
+String(day)
+.padStart(2,"0")
+
+);
 
 }
 
 
-function renderCalendar() {
+function drawCalendar() {
 
-    let grid =
-        document.getElementById(
-            "calendarGrid"
-        );
-
-
-    let title =
-        document.getElementById(
-            "calendarTitle"
-        );
+let calendar =
+document.getElementById(
+"calendar"
+);
 
 
-    let year =
-        calendarDate
-        .getFullYear();
+let title =
+document.getElementById(
+"calendarTitle"
+);
 
 
-    let month =
-        calendarDate
-        .getMonth();
+let year =
+calendarDate.getFullYear();
 
 
-    title.innerText =
-        thaiMonths[month] +
-        " " +
-        (year + 543);
+let month =
+calendarDate.getMonth();
 
 
-    grid.innerHTML =
-        "";
+title.innerText =
+months[month] +
+" " +
+(year + 543);
 
 
-    let first =
-        new Date(
-            year,
-            month,
-            1
-        ).getDay();
+calendar.innerHTML = "";
 
 
-    let totalDays =
-        new Date(
-            year,
-            month + 1,
-            0
-        ).getDate();
+let firstDay =
+new Date(
+year,
+month,
+1
+).getDay();
 
 
-    for (
-        let i = 0;
-        i < first;
-        i++
-    ) {
-
-        grid.innerHTML +=
-            `
-            <div class="day empty-day">
-            </div>
-            `;
-
-    }
+let days =
+new Date(
+year,
+month + 1,
+0
+).getDate();
 
 
-    let today =
-        new Date();
+for (
+let i = 0;
+i < firstDay;
+i++
+) {
 
-
-    for (
-        let day = 1;
-        day <= totalDays;
-        day++
-    ) {
-
-        let date =
-            formatDate(
-                year,
-                month,
-                day
-            );
-
-
-        let dayTasks =
-            tasks.filter(
-                item =>
-                item.date ===
-                date
-            );
-
-
-        let isToday =
-
-            today.getFullYear()
-            === year
-
-            &&
-
-            today.getMonth()
-            === month
-
-            &&
-
-            today.getDate()
-            === day;
-
-
-        let classes =
-            "day";
-
-
-        if (
-            isToday
-        ) {
-
-            classes +=
-                " today";
-
-        }
-
-
-        if (
-            selectedDate ===
-            date
-        ) {
-
-            classes +=
-                " selected";
-
-        }
-
-
-        let dots =
-            "";
-
-
-        dayTasks
-            .slice(0,2)
-            .forEach(
-                function(item) {
-
-                    dots +=
-                        `
-                        <div class="task-dot">
-                            📌 ${item.subject}
-                        </div>
-                        `;
-
-                }
-            );
-
-
-        if (
-            dayTasks.length > 2
-        ) {
-
-            dots +=
-                `
-                <div class="task-dot">
-                    +${dayTasks.length - 2} งาน
-                </div>
-                `;
-
-        }
-
-
-        grid.innerHTML += `
-
-            <div
-                class="${classes}"
-                onclick="
-                    selectDate('${date}')
-                "
-            >
-
-                <div class="day-number">
-                    ${day}
-                </div>
-
-                ${dots}
-
-            </div>
-
-        `;
-
-    }
+calendar.innerHTML +=
+`
+<div></div>
+`;
 
 }
 
 
-function previousMonth() {
-
-    calendarDate.setMonth(
-        calendarDate.getMonth() - 1
-    );
+let today =
+new Date();
 
 
-    renderCalendar();
+for (
+let day = 1;
+day <= days;
+day++
+) {
+
+let date =
+dateString(
+year,
+month,
+day
+);
+
+
+let dayTasks =
+tasks.filter(
+item =>
+item.date === date
+);
+
+
+let todayClass = "";
+
+
+if (
+today.getFullYear() === year &&
+today.getMonth() === month &&
+today.getDate() === day
+) {
+
+todayClass = "today";
 
 }
 
 
-function nextMonth() {
-
-    calendarDate.setMonth(
-        calendarDate.getMonth() + 1
-    );
+let taskText = "";
 
 
-    renderCalendar();
+if (
+dayTasks.length > 0
+) {
+
+taskText =
+`
+<div class="has-task">
+📌 ${dayTasks.length} งาน
+</div>
+`;
+
+}
+
+
+calendar.innerHTML += `
+
+<div
+class="day ${todayClass}"
+onclick="selectDate('${date}')"
+>
+
+<div>
+${day}
+</div>
+
+${taskText}
+
+</div>
+
+`;
+
+}
+
+}
+
+
+function changeMonth(amount) {
+
+calendarDate.setMonth(
+calendarDate.getMonth() + amount
+);
+
+
+drawCalendar();
 
 }
 
 
 function selectDate(date) {
 
-    selectedDate =
-        date;
+let box =
+document.getElementById(
+"selectedInfo"
+);
 
 
-    renderCalendar();
+let dayTasks =
+tasks.filter(
+item =>
+item.date === date
+);
 
 
-    let dayTasks =
-        tasks.filter(
-            item =>
-            item.date ===
-            date
-        );
+if (
+dayTasks.length === 0
+) {
+
+box.innerHTML =
+`
+📅 ${date}
+<br><br>
+📭 วันนี้ไม่มีงาน
+`;
+
+return;
+
+}
 
 
-    let box =
-        document.getElementById(
-            "selectedDate"
-        );
+let html =
+`
+<strong>
+📅 งานวันที่ ${date}
+</strong>
+<br><br>
+`;
 
 
-    let parts =
-        date.split("-");
+dayTasks.forEach(
+function(item) {
+
+html +=
+`
+<div
+style="
+background:white;
+padding:10px;
+margin:5px 0;
+border-radius:10px;
+"
+>
+
+${item.completed ? "✅" : "📌"}
+
+<strong>
+${item.subject}
+</strong>
+
+<br>
+
+📝 ${item.task}
+
+<br>
+
+⏰ ${item.time}
+
+</div>
+`;
+
+});
 
 
-    let displayDate =
-        parts[2] +
-        "/" +
-        parts[1] +
-        "/" +
-        (Number(parts[0]) + 543);
-
-
-    if (
-        dayTasks.length === 0
-    ) {
-
-        box.innerHTML =
-            `
-            📅 ${displayDate}
-            <br><br>
-            📭 วันนี้ไม่มีงาน
-            `;
-
-        return;
-
-    }
-
-
-    let html =
-        `
-        <strong>
-            📅 งานวันที่ ${displayDate}
-        </strong>
-        <br><br>
-        `;
-
-
-    dayTasks.forEach(
-        function(item) {
-
-            html +=
-                `
-                <div>
-                    ${
-                        item.completed
-                        ? "✅"
-                        : "📌"
-                    }
-
-                    ${item.subject}
-                    —
-                    ${item.task}
-
-                    <br>
-
-                    ⏰ ${item.time}
-
-                </div>
-
-                <hr>
-                `;
-
-        }
-    );
-
-
-    box.innerHTML =
-        html;
+box.innerHTML =
+html;
 
 }
 
 
 /* =========================
-   START
+   เริ่มต้น
 ========================= */
-
-setInterval(
-    checkDeadline,
-    60000
-);
-
 
 showTasks();
 
-renderCalendar();
-
-updateDashboard();
+drawCalendar();
 
 </script>
 
 </body>
-    </html>
+</html>
