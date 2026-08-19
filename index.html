@@ -21,7 +21,7 @@ body {
 }
 
 .container {
-    max-width: 700px;
+    max-width: 750px;
     margin: auto;
 }
 
@@ -90,6 +90,17 @@ button {
     color: white;
 }
 
+.notify {
+    background: #8b5cf6;
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.search {
+    margin-bottom: 15px;
+}
+
 .stats {
     display: flex;
     justify-content: space-around;
@@ -110,6 +121,37 @@ button {
     opacity: 0.5;
 }
 
+.task.today {
+    border-left: 6px solid #ef4444;
+}
+
+.task.soon {
+    border-left: 6px solid #f59e0b;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.badge-today {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.badge-soon {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-normal {
+    background: #dcfce7;
+    color: #166534;
+}
+
 .empty {
     text-align: center;
     color: #777;
@@ -118,6 +160,7 @@ button {
 
 </style>
 </head>
+
 
 <body>
 
@@ -128,7 +171,7 @@ button {
         <h1>📚 ระบบจัดการงาน</h1>
 
         <p>
-            ช่วยจัดการงานและกำหนดส่งของคุณ
+            จัดการงานและกำหนดส่งของคุณได้ง่าย ๆ
         </p>
 
     </div>
@@ -137,18 +180,44 @@ button {
     <div class="stats">
 
         <div>
-            <div class="stat-number" id="total">0</div>
-            <div>งานทั้งหมด</div>
+            <div
+                class="stat-number"
+                id="total"
+            >
+                0
+            </div>
+
+            <div>
+                งานทั้งหมด
+            </div>
         </div>
 
-        <div>
-            <div class="stat-number" id="completed">0</div>
-            <div>เสร็จแล้ว</div>
-        </div>
 
         <div>
-            <div class="stat-number" id="remaining">0</div>
-            <div>ค้างอยู่</div>
+            <div
+                class="stat-number"
+                id="completed"
+            >
+                0
+            </div>
+
+            <div>
+                เสร็จแล้ว
+            </div>
+        </div>
+
+
+        <div>
+            <div
+                class="stat-number"
+                id="remaining"
+            >
+                0
+            </div>
+
+            <div>
+                ค้างอยู่
+            </div>
         </div>
 
     </div>
@@ -156,9 +225,14 @@ button {
 
     <div class="box">
 
-        <h2>➕ เพิ่มงานใหม่</h2>
+        <h2>
+            ➕ เพิ่มงานใหม่
+        </h2>
 
-        <label>วิชา</label>
+
+        <label>
+            วิชา
+        </label>
 
         <input
             id="subject"
@@ -167,7 +241,9 @@ button {
         >
 
 
-        <label>ชื่องาน</label>
+        <label>
+            ชื่องาน
+        </label>
 
         <input
             id="task"
@@ -176,7 +252,9 @@ button {
         >
 
 
-        <label>วันส่ง</label>
+        <label>
+            วันส่ง
+        </label>
 
         <input
             id="date"
@@ -184,7 +262,9 @@ button {
         >
 
 
-        <label>เวลาส่ง</label>
+        <label>
+            เวลาส่ง
+        </label>
 
         <input
             id="time"
@@ -199,10 +279,38 @@ button {
             💾 บันทึกงาน
         </button>
 
+
+        <button
+            class="notify"
+            onclick="requestNotification()"
+        >
+            🔔 เปิดการแจ้งเตือน
+        </button>
+
     </div>
 
 
-    <h2>📋 งานของฉัน</h2>
+    <div class="box">
+
+        <h2>
+            🔎 ค้นหางาน
+        </h2>
+
+        <input
+            id="search"
+            class="search"
+            type="text"
+            placeholder="พิมพ์ชื่อวิชาหรืองาน..."
+            oninput="showTasks()"
+        >
+
+    </div>
+
+
+    <h2>
+        📋 งานของฉัน
+    </h2>
+
 
     <div id="taskList"></div>
 
@@ -210,6 +318,7 @@ button {
 
 
 <script>
+
 
 let tasks =
     JSON.parse(
@@ -220,13 +329,16 @@ let tasks =
 function addTask() {
 
     let subject =
-        document.getElementById("subject").value;
+        document.getElementById("subject").value.trim();
+
 
     let task =
-        document.getElementById("task").value;
+        document.getElementById("task").value.trim();
+
 
     let date =
         document.getElementById("date").value;
+
 
     let time =
         document.getElementById("time").value;
@@ -239,7 +351,9 @@ function addTask() {
         time === ""
     ) {
 
-        alert("กรุณากรอกข้อมูลให้ครบ");
+        alert(
+            "กรุณากรอกข้อมูลให้ครบ"
+        );
 
         return;
     }
@@ -265,10 +379,7 @@ function addTask() {
     tasks.push(newTask);
 
 
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
+    saveTasks();
 
 
     showTasks();
@@ -285,10 +396,27 @@ function addTask() {
 }
 
 
+function saveTasks() {
+
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks)
+    );
+
+}
+
+
 function showTasks() {
 
     let list =
         document.getElementById("taskList");
+
+
+    let search =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
 
 
     list.innerHTML = "";
@@ -297,17 +425,109 @@ function showTasks() {
     updateStats();
 
 
-    if (tasks.length === 0) {
+    let filtered =
+        tasks.filter(function(item) {
+
+            return (
+
+                item.subject
+                .toLowerCase()
+                .includes(search)
+
+                ||
+
+                item.task
+                .toLowerCase()
+                .includes(search)
+
+            );
+
+        });
+
+
+    if (filtered.length === 0) {
 
         list.innerHTML =
-            '<div class="empty">📭 ยังไม่มีงาน</div>';
+            '<div class="empty">📭 ไม่พบงาน</div>';
 
         return;
-
     }
 
 
-    tasks.forEach(function(item, index) {
+    filtered.forEach(function(item) {
+
+        let originalIndex =
+            tasks.indexOf(item);
+
+
+        let deadline =
+            new Date(
+                item.date +
+                "T" +
+                item.time
+            );
+
+
+        let now =
+            new Date();
+
+
+        let difference =
+            deadline - now;
+
+
+        let statusClass = "";
+
+        let badge = "";
+
+
+        if (
+            difference > 0 &&
+            difference <=
+            24 * 60 * 60 * 1000
+        ) {
+
+            statusClass = "soon";
+
+            badge =
+                '<span class="badge badge-soon">⚠️ ใกล้ถึงกำหนด</span>';
+
+        }
+
+
+        if (
+            deadline.toDateString()
+            === now.toDateString()
+        ) {
+
+            statusClass = "today";
+
+            badge =
+                '<span class="badge badge-today">🚨 ส่งวันนี้</span>';
+
+        }
+
+
+        if (
+            difference <= 0 &&
+            !item.completed
+        ) {
+
+            badge =
+                '<span class="badge badge-today">❗ เลยกำหนด</span>';
+
+        }
+
+
+        if (
+            item.completed
+        ) {
+
+            badge =
+                '<span class="badge badge-normal">✅ เสร็จแล้ว</span>';
+
+        }
+
 
         let completedClass =
             item.completed
@@ -317,40 +537,58 @@ function showTasks() {
 
         list.innerHTML += `
 
-            <div class="task ${completedClass}">
+            <div
+                class="task ${statusClass} ${completedClass}"
+            >
+
+                ${badge}
 
                 <h3>
                     📚 ${item.subject}
                 </h3>
 
+
                 <p>
                     📝 ${item.task}
                 </p>
 
+
                 <p>
-                    📅 วันที่ส่ง: ${item.date}
+
+                    📅 วันที่ส่ง:
+                    ${item.date}
+
                     <br>
-                    ⏰ เวลา: ${item.time}
+
+                    ⏰ เวลา:
+                    ${item.time}
+
                 </p>
 
 
                 ${
                     item.completed
-                    ? "<p>✅ ทำงานเสร็จแล้ว</p>"
-                    : `
-                        <button
-                            class="done"
-                            onclick="completeTask(${index})"
-                        >
-                            ✅ ทำเสร็จแล้ว
-                        </button>
+
+                    ?
+
+                    "<p>🎉 งานนี้เสร็จแล้ว!</p>"
+
+                    :
+
+                    `
+                    <button
+                        class="done"
+                        onclick="completeTask(${originalIndex})"
+                    >
+                        ✅ ทำเสร็จแล้ว
+                    </button>
                     `
                 }
 
 
                 <button
                     class="delete"
-                    onclick="deleteTask(${index})"
+                    onclick="deleteTask(${originalIndex})"
                 >
                     🗑️ ลบ
                 </button>
@@ -369,10 +607,7 @@ function completeTask(index) {
     tasks[index].completed = true;
 
 
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
+    saveTasks();
 
 
     showTasks();
@@ -383,16 +618,15 @@ function completeTask(index) {
 function deleteTask(index) {
 
     if (
-        confirm("ต้องการลบงานนี้หรือไม่?")
+        confirm(
+            "ต้องการลบงานนี้หรือไม่?"
+        )
     ) {
 
         tasks.splice(index, 1);
 
 
-        localStorage.setItem(
-            "tasks",
-            JSON.stringify(tasks)
-        );
+        saveTasks();
 
 
         showTasks();
@@ -418,16 +652,60 @@ function updateStats() {
         total - completed;
 
 
-    document.getElementById("total")
-        .innerText = total;
+    document.getElementById(
+        "total"
+    ).innerText = total;
 
 
-    document.getElementById("completed")
-        .innerText = completed;
+    document.getElementById(
+        "completed"
+    ).innerText = completed;
 
 
-    document.getElementById("remaining")
-        .innerText = remaining;
+    document.getElementById(
+        "remaining"
+    ).innerText = remaining;
+
+}
+
+
+function requestNotification() {
+
+    if (
+        !("Notification" in window)
+    ) {
+
+        alert(
+            "เบราว์เซอร์นี้ไม่รองรับการแจ้งเตือน"
+        );
+
+        return;
+
+    }
+
+
+    Notification.requestPermission()
+        .then(function(permission) {
+
+            if (
+                permission === "granted"
+            ) {
+
+                new Notification(
+                    "🔔 เปิดการแจ้งเตือนแล้ว!"
+                );
+
+            }
+
+            else {
+
+                alert(
+                    "กรุณาอนุญาตการแจ้งเตือนในเบราว์เซอร์"
+                );
+
+            }
+
+        });
 
 }
 
@@ -440,8 +718,13 @@ function checkDeadline() {
 
     tasks.forEach(function(item) {
 
-        if (item.completed) {
+        if (
+            item.completed ||
+            item.notified
+        ) {
+
             return;
+
         }
 
 
@@ -460,25 +743,44 @@ function checkDeadline() {
         if (
             difference > 0 &&
             difference <=
-            60 * 60 * 1000 &&
-            !item.notified
+            60 * 60 * 1000
         ) {
 
-            alert(
-                "🔔 ใกล้ถึงกำหนดส่ง!\n\n" +
-                item.subject +
-                "\n" +
-                item.task
-            );
+
+            if (
+                "Notification" in window &&
+                Notification.permission ===
+                "granted"
+            ) {
+
+                new Notification(
+                    "🔔 ใกล้ถึงกำหนดส่ง!",
+                    {
+                        body:
+                            item.subject +
+                            " - " +
+                            item.task
+                    }
+                );
+
+            }
+
+            else {
+
+                alert(
+                    "🔔 ใกล้ถึงกำหนดส่ง!\n\n" +
+                    item.subject +
+                    "\n" +
+                    item.task
+                );
+
+            }
 
 
             item.notified = true;
 
 
-            localStorage.setItem(
-                "tasks",
-                JSON.stringify(tasks)
-            );
+            saveTasks();
 
         }
 
@@ -498,4 +800,4 @@ showTasks();
 </script>
 
 </body>
-</html>
+    </html>
