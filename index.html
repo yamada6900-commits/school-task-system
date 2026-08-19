@@ -1,1 +1,389 @@
-github.com/yamada6900-commits/school-task-system/new/main
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ระบบจัดการงาน</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .box {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0 15px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .save {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .delete {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .done {
+            background: #3498db;
+            color: white;
+        }
+
+        .task {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>📚 ระบบจัดการงาน</h1>
+
+    <div class="box">
+
+        <h2>➕ เพิ่มงานใหม่</h2>
+
+        <label>วิชา</label><br>
+
+        <input
+            id="subject"
+            type="text"
+            placeholder="เช่น คณิตศาสตร์"
+        >
+
+        <label>ชื่องาน</label><br>
+
+        <input
+            id="task"
+            type="text"
+            placeholder="เช่น แบบฝึกหัดบทที่ 3"
+        >
+
+        <label>วันส่ง</label><br>
+
+        <input
+            id="date"
+            type="date"
+        >
+
+        <label>เวลาส่ง</label><br>
+
+        <input
+            id="time"
+            type="time"
+        >
+
+        <br>
+
+        <button
+            class="save"
+            onclick="addTask()"
+        >
+            💾 บันทึกงาน
+        </button>
+
+    </div>
+
+
+    <h2>📋 งานของฉัน</h2>
+
+    <div id="taskList"></div>
+
+
+    <script>
+
+        // โหลดงานที่เคยบันทึกไว้
+        let tasks =
+            JSON.parse(
+                localStorage.getItem("tasks")
+            ) || [];
+
+
+        // เพิ่มงาน
+        function addTask() {
+
+            let subject =
+                document.getElementById("subject").value;
+
+            let task =
+                document.getElementById("task").value;
+
+            let date =
+                document.getElementById("date").value;
+
+            let time =
+                document.getElementById("time").value;
+
+
+            // ตรวจสอบว่ากรอกครบหรือไม่
+            if (
+                subject === "" ||
+                task === "" ||
+                date === "" ||
+                time === ""
+            ) {
+
+                alert("กรุณากรอกข้อมูลให้ครบ");
+
+                return;
+            }
+
+
+            // สร้างข้อมูลงาน
+            let newTask = {
+
+                subject: subject,
+
+                task: task,
+
+                date: date,
+
+                time: time,
+
+                completed: false,
+
+                notified: false
+            };
+
+
+            // เพิ่มงานเข้าไปในรายการ
+            tasks.push(newTask);
+
+
+            // บันทึกงานลงโทรศัพท์
+            localStorage.setItem(
+                "tasks",
+                JSON.stringify(tasks)
+            );
+
+
+            // แสดงงาน
+            showTasks();
+
+
+            // ล้างช่องกรอกข้อมูล
+            document.getElementById("subject").value = "";
+
+            document.getElementById("task").value = "";
+
+            document.getElementById("date").value = "";
+
+            document.getElementById("time").value = "";
+        }
+
+
+        // แสดงงานทั้งหมด
+        function showTasks() {
+
+            let list =
+                document.getElementById("taskList");
+
+
+            list.innerHTML = "";
+
+
+            // ถ้ายังไม่มีงาน
+            if (tasks.length === 0) {
+
+                list.innerHTML =
+                    "<p>ยังไม่มีงาน</p>";
+
+                return;
+            }
+
+
+            // แสดงงานแต่ละงาน
+            tasks.forEach(
+                function(item, index) {
+
+
+                    let completedClass =
+                        item.completed
+                        ? "completed"
+                        : "";
+
+
+                    list.innerHTML += `
+
+                        <div
+                            class="task ${completedClass}"
+                        >
+
+                            <h3>
+                                📚 ${item.subject}
+                            </h3>
+
+                            <p>
+                                📝 ${item.task}
+                            </p>
+
+                            <p>
+                                📅 วันที่ส่ง:
+                                ${item.date}
+
+                                <br>
+
+                                ⏰ เวลา:
+                                ${item.time}
+                            </p>
+
+
+                            <button
+                                class="done"
+                                onclick="completeTask(${index})"
+                            >
+                                ✅ ทำเสร็จแล้ว
+                            </button>
+
+
+                            <button
+                                class="delete"
+                                onclick="deleteTask(${index})"
+                            >
+                                🗑️ ลบ
+                            </button>
+
+                        </div>
+
+                    `;
+                }
+            );
+        }
+
+
+        // ทำเครื่องหมายว่างานเสร็จแล้ว
+        function completeTask(index) {
+
+            tasks[index].completed = true;
+
+
+            localStorage.setItem(
+                "tasks",
+                JSON.stringify(tasks)
+            );
+
+
+            showTasks();
+        }
+
+
+        // ลบงาน
+        function deleteTask(index) {
+
+            tasks.splice(index, 1);
+
+
+            localStorage.setItem(
+                "tasks",
+                JSON.stringify(tasks)
+            );
+
+
+            showTasks();
+        }
+
+
+        // ตรวจสอบงานใกล้ถึงกำหนด
+        function checkDeadline() {
+
+            let now = new Date();
+
+
+            tasks.forEach(
+                function(item) {
+
+
+                    let deadline =
+                        new Date(
+                            item.date +
+                            "T" +
+                            item.time
+                        );
+
+
+                    let difference =
+                        deadline - now;
+
+
+                    // เหลือไม่ถึง 1 ชั่วโมง
+                    if (
+                        difference > 0 &&
+                        difference <=
+                        60 * 60 * 1000 &&
+                        !item.notified
+                    ) {
+
+
+                        alert(
+                            "🔔 ใกล้ถึงกำหนดส่ง!\n\n" +
+
+                            item.subject +
+
+                            "\n" +
+
+                            item.task
+                        );
+
+
+                        item.notified = true;
+
+
+                        localStorage.setItem(
+                            "tasks",
+                            JSON.stringify(tasks)
+                        );
+
+                    }
+
+                }
+            );
+        }
+
+
+        // ตรวจสอบทุก 1 นาที
+        setInterval(
+            checkDeadline,
+            60000
+        );
+
+
+        // แสดงงานตอนเปิดเว็บ
+        showTasks();
+
+    </script>
+
+</body>
+  </html>
