@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ระบบจัดการงาน</title>
 
 <style>
@@ -20,7 +21,7 @@ body {
 }
 
 .container {
-    max-width: 750px;
+    max-width: 800px;
     margin: auto;
 }
 
@@ -39,7 +40,8 @@ body {
 
 .box,
 .task,
-.stats {
+.stats,
+.calendar {
     background: white;
     padding: 20px;
     margin-bottom: 15px;
@@ -178,6 +180,109 @@ button {
     gap: 5px;
 }
 
+/* ปฏิทิน */
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calendar-header button {
+    background: #e5e7eb;
+}
+
+.calendar-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.weekdays,
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.weekday {
+    text-align: center;
+    font-weight: bold;
+    padding: 8px 2px;
+    font-size: 13px;
+}
+
+.day {
+    min-height: 65px;
+    padding: 6px;
+    border-radius: 10px;
+    background: #f8fafc;
+    cursor: pointer;
+    position: relative;
+}
+
+.day:hover {
+    background: #e0f2fe;
+}
+
+.day.empty-day {
+    background: transparent;
+    cursor: default;
+}
+
+.day.today {
+    border: 2px solid #3b82f6;
+}
+
+.day.selected {
+    background: #dbeafe;
+    border: 2px solid #2563eb;
+}
+
+.day-number {
+    font-weight: bold;
+}
+
+.task-dot {
+    margin-top: 5px;
+    font-size: 11px;
+    color: #ef4444;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.selected-date {
+    margin-top: 15px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .stats {
+        padding: 15px 5px;
+    }
+
+    .stat-number {
+        font-size: 22px;
+    }
+
+    .day {
+        min-height: 55px;
+        font-size: 12px;
+    }
+
+    .task-dot {
+        font-size: 9px;
+    }
+
+}
+
 </style>
 </head>
 
@@ -196,6 +301,8 @@ button {
 
     </div>
 
+
+    <!-- สถิติ -->
 
     <div class="stats">
 
@@ -242,6 +349,8 @@ button {
 
     </div>
 
+
+    <!-- เพิ่มงาน -->
 
     <div class="box">
 
@@ -309,6 +418,72 @@ button {
 
     </div>
 
+
+    <!-- ปฏิทิน -->
+
+    <div class="calendar">
+
+        <h2>
+            📅 ปฏิทินงาน
+        </h2>
+
+
+        <div class="calendar-header">
+
+            <button
+                onclick="previousMonth()"
+            >
+                ◀
+            </button>
+
+
+            <div
+                id="calendarTitle"
+                class="calendar-title"
+            >
+            </div>
+
+
+            <button
+                onclick="nextMonth()"
+            >
+                ▶
+            </button>
+
+        </div>
+
+
+        <div class="weekdays">
+
+            <div class="weekday">อา.</div>
+            <div class="weekday">จ.</div>
+            <div class="weekday">อ.</div>
+            <div class="weekday">พ.</div>
+            <div class="weekday">พฤ.</div>
+            <div class="weekday">ศ.</div>
+            <div class="weekday">ส.</div>
+
+        </div>
+
+
+        <div
+            id="calendarGrid"
+            class="calendar-grid"
+        >
+        </div>
+
+
+        <div
+            id="selectedDate"
+            class="selected-date"
+        >
+            👆 กดวันที่ในปฏิทินเพื่อดูงาน
+        </div>
+
+    </div>
+
+
+    <!-- ค้นหา -->
 
     <div class="box">
 
@@ -389,6 +564,18 @@ let tasks =
 let currentFilter = "all";
 
 
+let calendarDate =
+    new Date();
+
+
+let selectedDate =
+    null;
+
+
+/* =========================
+   บันทึกข้อมูล
+========================= */
+
 function saveTasks() {
 
     localStorage.setItem(
@@ -398,6 +585,10 @@ function saveTasks() {
 
 }
 
+
+/* =========================
+   เพิ่มงาน
+========================= */
 
 function addTask() {
 
@@ -464,6 +655,8 @@ function addTask() {
 
     showTasks();
 
+    renderCalendar();
+
 
     document.getElementById(
         "subject"
@@ -486,6 +679,10 @@ function addTask() {
 
 }
 
+
+/* =========================
+   แก้ไขงาน
+========================= */
 
 function editTask(index) {
 
@@ -572,15 +769,22 @@ function editTask(index) {
         newTime.trim();
 
 
-    tasks[index].notified = false;
+    tasks[index].notified =
+        false;
 
 
     saveTasks();
 
     showTasks();
 
+    renderCalendar();
+
 }
 
+
+/* =========================
+   กรองงาน
+========================= */
 
 function setFilter(filter) {
 
@@ -644,6 +848,10 @@ function setFilter(filter) {
 }
 
 
+/* =========================
+   แสดงงาน
+========================= */
+
 function showTasks() {
 
     let list =
@@ -659,7 +867,8 @@ function showTasks() {
         .toLowerCase();
 
 
-    let now = new Date();
+    let now =
+        new Date();
 
 
     list.innerHTML = "";
@@ -843,7 +1052,6 @@ function showTasks() {
 
 
                     <p>
-
                         📅 วันที่ส่ง:
                         ${item.date}
 
@@ -851,7 +1059,6 @@ function showTasks() {
 
                         ⏰ เวลา:
                         ${item.time}
-
                     </p>
 
 
@@ -900,18 +1107,28 @@ function showTasks() {
 }
 
 
+/* =========================
+   ทำงานเสร็จ
+========================= */
+
 function completeTask(index) {
 
-    tasks[index].completed = true;
+    tasks[index].completed =
+        true;
 
 
     saveTasks();
 
-
     showTasks();
+
+    renderCalendar();
 
 }
 
+
+/* =========================
+   ลบงาน
+========================= */
 
 function deleteTask(index) {
 
@@ -926,13 +1143,18 @@ function deleteTask(index) {
 
         saveTasks();
 
-
         showTasks();
+
+        renderCalendar();
 
     }
 
 }
 
+
+/* =========================
+   สถิติ
+========================= */
 
 function updateStats() {
 
@@ -953,20 +1175,27 @@ function updateStats() {
 
     document.getElementById(
         "total"
-    ).innerText = total;
+    ).innerText =
+        total;
 
 
     document.getElementById(
         "completed"
-    ).innerText = completed;
+    ).innerText =
+        completed;
 
 
     document.getElementById(
         "remaining"
-    ).innerText = remaining;
+    ).innerText =
+        remaining;
 
 }
 
+
+/* =========================
+   แจ้งเตือน
+========================= */
 
 function requestNotification() {
 
@@ -1012,6 +1241,10 @@ function requestNotification() {
 
 }
 
+
+/* =========================
+   ตรวจงานใกล้ส่ง
+========================= */
 
 function checkDeadline() {
 
@@ -1082,7 +1315,8 @@ function checkDeadline() {
                 }
 
 
-                item.notified = true;
+                item.notified =
+                    true;
 
 
                 saveTasks();
@@ -1095,6 +1329,341 @@ function checkDeadline() {
 }
 
 
+/* =========================
+   ปฏิทิน
+========================= */
+
+const thaiMonths = [
+    "มกราคม",
+    "กุมภาพันธ์",
+    "มีนาคม",
+    "เมษายน",
+    "พฤษภาคม",
+    "มิถุนายน",
+    "กรกฎาคม",
+    "สิงหาคม",
+    "กันยายน",
+    "ตุลาคม",
+    "พฤศจิกายน",
+    "ธันวาคม"
+];
+
+
+function formatDate(year, month, day) {
+
+    let m =
+        String(month + 1)
+        .padStart(2, "0");
+
+
+    let d =
+        String(day)
+        .padStart(2, "0");
+
+
+    return (
+        year +
+        "-" +
+        m +
+        "-" +
+        d
+    );
+
+}
+
+
+function renderCalendar() {
+
+    let grid =
+        document.getElementById(
+            "calendarGrid"
+        );
+
+
+    let title =
+        document.getElementById(
+            "calendarTitle"
+        );
+
+
+    let year =
+        calendarDate.getFullYear();
+
+
+    let month =
+        calendarDate.getMonth();
+
+
+    title.innerText =
+        thaiMonths[month] +
+        " " +
+        (year + 543);
+
+
+    grid.innerHTML = "";
+
+
+    let firstDay =
+        new Date(
+            year,
+            month,
+            1
+        ).getDay();
+
+
+    let daysInMonth =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+
+    for (
+        let i = 0;
+        i < firstDay;
+        i++
+    ) {
+
+        grid.innerHTML +=
+            '<div class="day empty-day"></div>';
+
+    }
+
+
+    let today =
+        new Date();
+
+
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
+
+        let dateString =
+            formatDate(
+                year,
+                month,
+                day
+            );
+
+
+        let dayTasks =
+            tasks.filter(
+                item =>
+                item.date ===
+                dateString
+            );
+
+
+        let isToday =
+            today.getFullYear()
+            === year
+            &&
+            today.getMonth()
+            === month
+            &&
+            today.getDate()
+            === day;
+
+
+        let isSelected =
+            selectedDate ===
+            dateString;
+
+
+        let classes =
+            "day";
+
+
+        if (isToday) {
+            classes += " today";
+        }
+
+
+        if (isSelected) {
+            classes += " selected";
+        }
+
+
+        let dots = "";
+
+
+        dayTasks
+            .slice(0, 2)
+            .forEach(
+                function(item) {
+
+                    dots +=
+                        `
+                        <div class="task-dot">
+                            📌 ${item.subject}
+                        </div>
+                        `;
+
+                }
+            );
+
+
+        if (
+            dayTasks.length > 2
+        ) {
+
+            dots +=
+                `
+                <div class="task-dot">
+                    +${dayTasks.length - 2} งาน
+                </div>
+                `;
+
+        }
+
+
+        grid.innerHTML += `
+
+            <div
+                class="${classes}"
+                onclick="selectDate('${dateString}')"
+            >
+
+                <div class="day-number">
+                    ${day}
+                </div>
+
+                ${dots}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+function previousMonth() {
+
+    calendarDate.setMonth(
+        calendarDate.getMonth() - 1
+    );
+
+
+    renderCalendar();
+
+}
+
+
+function nextMonth() {
+
+    calendarDate.setMonth(
+        calendarDate.getMonth() + 1
+    );
+
+
+    renderCalendar();
+
+}
+
+
+function selectDate(dateString) {
+
+    selectedDate =
+        dateString;
+
+
+    renderCalendar();
+
+
+    let selectedTasks =
+        tasks.filter(
+            item =>
+            item.date ===
+            dateString
+        );
+
+
+    let box =
+        document.getElementById(
+            "selectedDate"
+        );
+
+
+    let parts =
+        dateString.split("-");
+
+
+    let displayDate =
+        parts[2] +
+        "/" +
+        parts[1] +
+        "/" +
+        (Number(parts[0]) + 543);
+
+
+    if (
+        selectedTasks.length === 0
+    ) {
+
+        box.innerHTML =
+            "📅 " +
+            displayDate +
+            "<br><br>" +
+            "📭 วันนี้ไม่มีงาน";
+
+        return;
+
+    }
+
+
+    let html =
+        `
+        <strong>
+            📅 งานวันที่ ${displayDate}
+        </strong>
+        <br><br>
+        `;
+
+
+    selectedTasks.forEach(
+        function(item) {
+
+            html +=
+                `
+                <div>
+                    ${
+                        item.completed
+                        ? "✅"
+                        : "📌"
+                    }
+
+                    ${item.subject}
+                    —
+                    ${item.task}
+
+                    <br>
+
+                    ⏰ ${item.time}
+
+                </div>
+
+                <hr>
+                `;
+
+        }
+    );
+
+
+    box.innerHTML =
+        html;
+
+}
+
+
+/* =========================
+   เริ่มระบบ
+========================= */
+
 setInterval(
     checkDeadline,
     60000
@@ -1102,6 +1671,8 @@ setInterval(
 
 
 showTasks();
+
+renderCalendar();
 
 </script>
 
