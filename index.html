@@ -4,165 +4,707 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ระบบจัดการงาน</title>
+<title>My Cute Task 🌸</title>
 
 <style>
 
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #dbeafe, #fce7f3);
+body{
+    margin:0;
+    padding:20px;
+    font-family:
+        "Arial",
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe4f1,
+            #e0f2fe,
+            #fef3c7
+        );
+
+    min-height:100vh;
+
+    color:#4b5563;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
+
+/* =====================
+   BACKGROUND DECORATION
+===================== */
+
+.decor{
+    position:fixed;
+    pointer-events:none;
+    z-index:0;
 }
 
-h1, h2 {
-    text-align: center;
+.cloud{
+    font-size:55px;
+    opacity:.65;
+    animation:float 5s ease-in-out infinite;
 }
 
-.box {
-    background: white;
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 18px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+.cloud1{
+    top:30px;
+    left:5%;
 }
 
-input {
-    width: 100%;
-    padding: 12px;
-    margin: 7px 0 15px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 16px;
+.cloud2{
+    top:120px;
+    right:5%;
+    animation-delay:2s;
 }
 
-button {
-    padding: 11px 15px;
-    margin: 4px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+.flower{
+    font-size:35px;
+    animation:spin 6s linear infinite;
 }
 
-.save {
-    width: 100%;
-    background: #22c55e;
-    color: white;
+.flower1{
+    top:250px;
+    left:2%;
 }
 
-.done {
-    background: #3b82f6;
-    color: white;
+.flower2{
+    bottom:100px;
+    right:3%;
 }
 
-.edit {
-    background: #f59e0b;
-    color: white;
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
 }
 
-.delete {
-    background: #ef4444;
-    color: white;
+@keyframes spin{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    100%{
+        transform:rotate(360deg);
+    }
+
 }
 
-.task {
-    background: white;
-    padding: 18px;
-    margin: 12px 0;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+
+/* =====================
+   MAIN
+===================== */
+
+.container{
+    max-width:850px;
+    margin:auto;
+    position:relative;
+    z-index:1;
 }
 
-.completed {
-    opacity: 0.5;
-    text-decoration: line-through;
+
+/* =====================
+   HEADER
+===================== */
+
+.header{
+    text-align:center;
+    background:
+        rgba(255,255,255,.85);
+
+    padding:25px;
+    border-radius:30px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.08);
+
+    margin-bottom:20px;
 }
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+.header h1{
+    margin:0;
+    font-size:32px;
+    color:#ec4899;
 }
 
-.stat {
-    text-align: center;
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
+.header p{
+    margin-bottom:0;
 }
 
-.number {
-    font-size: 28px;
-    font-weight: bold;
+.bunny{
+    font-size:70px;
+    display:inline-block;
+
+    animation:
+        bounce 2s infinite;
 }
 
-.calendar-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+@keyframes bounce{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
 }
 
-.calendar-head button {
-    background: #e5e7eb;
+
+/* =====================
+   BOX
+===================== */
+
+.box{
+    background:
+        rgba(255,255,255,.92);
+
+    padding:22px;
+
+    margin:18px 0;
+
+    border-radius:25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(236,72,153,.12);
+
+    border:
+        2px solid
+        rgba(255,255,255,.8);
 }
 
-.calendar-title {
-    font-size: 20px;
-    font-weight: bold;
+.box h2{
+    color:#db2777;
+}
+
+
+/* =====================
+   STATS
+===================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+}
+
+.stat{
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff1f8,
+            #fdf4ff
+        );
+
+    padding:18px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    border:
+        2px solid #fce7f3;
+
+    transition:.25s;
+
+}
+
+.stat:hover{
+
+    transform:
+        translateY(-5px)
+        rotate(1deg);
+
+}
+
+.stat-icon{
+    font-size:32px;
+}
+
+.number{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    color:#ec4899;
+
+}
+
+
+/* =====================
+   PROGRESS
+===================== */
+
+.progress-box{
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff1f8,
+            #eff6ff
+        );
+
+}
+
+.progress-text{
+
+    text-align:center;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    color:#ec4899;
+
+    margin:10px;
+
+}
+
+.progress{
+
+    width:100%;
+
+    height:25px;
+
+    background:#fce7f3;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    border:
+        3px solid white;
+
+    box-shadow:
+        inset 0 2px 5px
+        rgba(0,0,0,.08);
+
+}
+
+.progress-bar{
+
+    height:100%;
+
+    width:0%;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #f9a8d4,
+            #c4b5fd,
+            #93c5fd
+        );
+
+    transition:
+        width .6s ease;
+
+}
+
+
+/* =====================
+   INPUT
+===================== */
+
+label{
+
+    font-weight:bold;
+
+    color:#be185d;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:13px;
+
+    margin:
+        7px 0 15px;
+
+    border:
+        2px solid #fbcfe8;
+
+    border-radius:15px;
+
+    font-size:16px;
+
+    background:#fffafd;
+
+    outline:none;
+
+    transition:.2s;
+
+}
+
+input:focus{
+
+    border-color:#f472b6;
+
+    box-shadow:
+        0 0 0 4px
+        #fce7f3;
+
+}
+
+
+/* =====================
+   BUTTON
+===================== */
+
+button{
+
+    padding:
+        11px 16px;
+
+    margin:4px;
+
+    border:0;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.2s;
+
+}
+
+button:hover{
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+}
+
+button:active{
+
+    transform:
+        scale(.95);
+
+}
+
+.save{
+
+    width:100%;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f472b6,
+            #c084fc
+        );
+
+    box-shadow:
+        0 5px 15px
+        rgba(236,72,153,.25);
+
+}
+
+.done{
+
+    background:#93c5fd;
+
+    color:white;
+
+}
+
+.edit{
+
+    background:#fcd34d;
+
+    color:#78350f;
+
+}
+
+.delete{
+
+    background:#fca5a5;
+
+    color:white;
+
+}
+
+
+/* =====================
+   TASK CARD
+===================== */
+
+.task{
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #fff7fb
+        );
+
+    padding:20px;
+
+    margin:14px 0;
+
+    border-radius:22px;
+
+    border-left:
+        7px solid #f9a8d4;
+
+    box-shadow:
+        0 7px 20px
+        rgba(236,72,153,.10);
+
+    transition:.25s;
+
+}
+
+.task:hover{
+
+    transform:
+        translateX(5px);
+
+}
+
+.task h3{
+
+    color:#db2777;
+
+}
+
+.completed{
+
+    opacity:.55;
+
+    border-left-color:
+        #86efac;
+
+}
+
+
+/* =====================
+   CALENDAR
+===================== */
+
+.calendar-head{
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:center;
+
+}
+
+.calendar-head button{
+
+    background:#fce7f3;
+
+    color:#be185d;
+
+}
+
+.calendar-title{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#db2777;
+
 }
 
 .weekdays,
-.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+.calendar-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(7,1fr);
+
+    gap:5px;
+
 }
 
-.weekday {
-    text-align: center;
-    font-weight: bold;
-    padding: 8px 0;
+.weekday{
+
+    text-align:center;
+
+    font-weight:bold;
+
+    padding:8px 0;
+
+    color:#be185d;
+
 }
 
-.day {
-    min-height: 60px;
-    background: #f8fafc;
-    padding: 6px;
-    border-radius: 10px;
-    cursor: pointer;
+.day{
+
+    min-height:65px;
+
+    background:#fff7fb;
+
+    padding:7px;
+
+    border-radius:13px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
 }
 
-.day:hover {
-    background: #dbeafe;
+.day:hover{
+
+    background:#fce7f3;
+
+    transform:scale(1.03);
+
 }
 
-.today {
-    border: 2px solid #3b82f6;
+.today{
+
+    border:
+        3px solid #f472b6;
+
+    background:#fdf2f8;
+
 }
 
-.has-task {
-    color: #ef4444;
-    font-size: 11px;
-    margin-top: 5px;
+.task-dot{
+
+    color:#ec4899;
+
+    font-size:10px;
+
+    margin-top:5px;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
 }
 
-.selected {
-    background: #bfdbfe;
+.selected-info{
+
+    margin-top:15px;
+
+    padding:15px;
+
+    background:#fff7fb;
+
+    border-radius:15px;
+
+    border:
+        2px dashed #f9a8d4;
+
 }
 
-.empty {
-    text-align: center;
-    color: #777;
-    padding: 20px;
+
+/* =====================
+   SEARCH
+===================== */
+
+.search-box{
+
+    position:relative;
+
+}
+
+.search-box input{
+
+    padding-left:45px;
+
+}
+
+
+/* =====================
+   EMPTY
+===================== */
+
+.empty{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#9ca3af;
+
+    font-size:18px;
+
+}
+
+
+/* =====================
+   FOOTER
+===================== */
+
+.footer{
+
+    text-align:center;
+
+    padding:20px;
+
+    color:#be185d;
+
+}
+
+
+/* =====================
+   MOBILE
+===================== */
+
+@media(max-width:600px){
+
+    body{
+        padding:10px;
+    }
+
+    .header h1{
+        font-size:26px;
+    }
+
+    .bunny{
+        font-size:55px;
+    }
+
+    .stats{
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .number{
+        font-size:24px;
+    }
+
+    .day{
+        min-height:55px;
+        font-size:12px;
+    }
+
 }
 
 </style>
@@ -171,47 +713,162 @@ button {
 
 <body>
 
+
+<!-- ตกแต่ง -->
+
+<div class="decor cloud cloud1">
+☁️
+</div>
+
+<div class="decor cloud cloud2">
+☁️
+</div>
+
+<div class="decor flower flower1">
+🌸
+</div>
+
+<div class="decor flower flower2">
+🌷
+</div>
+
+
 <div class="container">
 
-<h1>📚 ระบบจัดการงาน</h1>
 
-<p style="text-align:center;">
-ผู้ช่วยจัดการการบ้านของคุณ
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="bunny">
+🐰
+</div>
+
+<h1>
+🎀 My Cute Task 🎀
+</h1>
+
+<p>
+✨ จัดการงานของคุณให้ง่ายและน่ารักขึ้น ✨
 </p>
 
+</div>
 
-<!-- สถิติ -->
+
+<!-- STATS -->
 
 <div class="stats">
 
 <div class="stat">
-<div>📝</div>
-<div class="number" id="total">0</div>
-<div>งานทั้งหมด</div>
+
+<div class="stat-icon">
+📝
 </div>
+
+<div
+class="number"
+id="total"
+>
+0
+</div>
+
+<div>
+งานทั้งหมด
+</div>
+
+</div>
+
 
 <div class="stat">
-<div>⏰</div>
-<div class="number" id="remaining">0</div>
-<div>งานค้าง</div>
+
+<div class="stat-icon">
+⏰
 </div>
+
+<div
+class="number"
+id="remaining"
+>
+0
+</div>
+
+<div>
+งานค้าง
+</div>
+
+</div>
+
 
 <div class="stat">
-<div>✅</div>
-<div class="number" id="completed">0</div>
-<div>เสร็จแล้ว</div>
+
+<div class="stat-icon">
+🌟
+</div>
+
+<div
+class="number"
+id="done"
+>
+0
+</div>
+
+<div>
+เสร็จแล้ว
 </div>
 
 </div>
 
+</div>
 
-<!-- เพิ่มงาน -->
+
+<!-- PROGRESS -->
+
+<div class="box progress-box">
+
+<h2>
+🌈 ความคืบหน้าของคุณ
+</h2>
+
+<div
+class="progress-text"
+id="percent"
+>
+0%
+</div>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="progressBar"
+>
+</div>
+
+</div>
+
+<p
+id="message"
+style="
+text-align:center;
+"
+>
+🌱 มาเริ่มทำงานกันเถอะ!
+</p>
+
+</div>
+
+
+<!-- ADD -->
 
 <div class="box">
 
-<h2>➕ เพิ่มงานใหม่</h2>
+<h2>
+🌸 เพิ่มงานใหม่
+</h2>
 
-<label>วิชา</label>
+<label>
+📚 วิชา
+</label>
 
 <input
 id="subject"
@@ -220,7 +877,9 @@ placeholder="เช่น คณิตศาสตร์"
 >
 
 
-<label>ชื่องาน</label>
+<label>
+📝 ชื่องาน
+</label>
 
 <input
 id="task"
@@ -229,7 +888,9 @@ placeholder="เช่น แบบฝึกหัดบทที่ 3"
 >
 
 
-<label>วันส่ง</label>
+<label>
+📅 วันส่ง
+</label>
 
 <input
 id="date"
@@ -237,7 +898,9 @@ type="date"
 >
 
 
-<label>เวลาส่ง</label>
+<label>
+⏰ เวลาส่ง
+</label>
 
 <input
 id="time"
@@ -249,21 +912,25 @@ type="time"
 class="save"
 onclick="addTask()"
 >
-💾 บันทึกงาน
+💖 บันทึกงาน
 </button>
 
 </div>
 
 
-<!-- ปฏิทิน -->
+<!-- CALENDAR -->
 
 <div class="box">
 
-<h2>📅 ปฏิทินงาน</h2>
+<h2>
+🌷 ปฏิทินงาน
+</h2>
 
 <div class="calendar-head">
 
-<button onclick="changeMonth(-1)">
+<button
+onclick="changeMonth(-1)"
+>
 ◀
 </button>
 
@@ -273,11 +940,15 @@ class="calendar-title"
 >
 </div>
 
-<button onclick="changeMonth(1)">
+<button
+onclick="changeMonth(1)"
+>
 ▶
 </button>
 
 </div>
+
+<br>
 
 
 <div class="weekdays">
@@ -302,31 +973,51 @@ class="calendar-grid"
 
 <div
 id="selectedInfo"
-style="margin-top:15px;"
+class="selected-info"
 >
-กดวันที่เพื่อดูงาน
+💭 กดวันที่เพื่อดูงาน
 </div>
 
 </div>
 
 
-<!-- รายการงาน -->
+<!-- SEARCH -->
 
-<div class="box">
+<div class="box search-box">
 
-<h2>📋 งานของฉัน</h2>
+<h2>
+🔎 ค้นหางาน
+</h2>
 
 <input
 id="search"
 type="text"
-placeholder="🔎 ค้นหางาน..."
+placeholder="🔍 ค้นหาวิชาหรือชื่องาน..."
 oninput="showTasks()"
 >
 
 </div>
 
 
-<div id="taskList"></div>
+<!-- TASK -->
+
+<h2>
+🎀 งานของฉัน
+</h2>
+
+<div id="taskList">
+</div>
+
+
+<div class="footer">
+
+🐰 💗 🌸 ✨ 🌷 ☁️
+
+<br>
+
+ทำให้วันนี้เป็นวันที่ดีนะครับ ✨
+
+</div>
 
 
 </div>
@@ -335,9 +1026,9 @@ oninput="showTasks()"
 <script>
 
 
-/* =========================
-   ข้อมูล
-========================= */
+/* =====================
+   DATA
+===================== */
 
 let tasks =
 JSON.parse(
@@ -349,11 +1040,11 @@ let calendarDate =
 new Date();
 
 
-/* =========================
-   บันทึก
-========================= */
+/* =====================
+   SAVE
+===================== */
 
-function saveTasks() {
+function save(){
 
 localStorage.setItem(
 "tasks",
@@ -363,11 +1054,11 @@ JSON.stringify(tasks)
 }
 
 
-/* =========================
-   เพิ่มงาน
-========================= */
+/* =====================
+   ADD
+===================== */
 
-function addTask() {
+function addTask(){
 
 let subject =
 document.getElementById(
@@ -393,14 +1084,16 @@ document.getElementById(
 ).value;
 
 
-if (
-subject === "" ||
-task === "" ||
-date === "" ||
-time === ""
-) {
+if(
+subject==="" ||
+task==="" ||
+date==="" ||
+time===""
+){
 
-alert("กรุณากรอกข้อมูลให้ครบ");
+alert(
+"🌸 กรุณากรอกข้อมูลให้ครบก่อนนะครับ"
+);
 
 return;
 
@@ -409,53 +1102,60 @@ return;
 
 tasks.push({
 
-subject: subject,
+subject:subject,
 
-task: task,
+task:task,
 
-date: date,
+date:date,
 
-time: time,
+time:time,
 
-completed: false
+completed:false
 
 });
 
 
-saveTasks();
+save();
 
 showTasks();
+
+updateStats();
 
 drawCalendar();
 
 
 document.getElementById(
 "subject"
-).value = "";
+).value="";
 
 
 document.getElementById(
 "task"
-).value = "";
+).value="";
 
 
 document.getElementById(
 "date"
-).value = "";
+).value="";
 
 
 document.getElementById(
 "time"
-).value = "";
+).value="";
+
+
+alert(
+"🎀 เพิ่มงานเรียบร้อยแล้ว!"
+);
 
 }
 
 
-/* =========================
-   แสดงงาน
-========================= */
+/* =====================
+   SHOW
+===================== */
 
-function showTasks() {
+function showTasks(){
 
 let list =
 document.getElementById(
@@ -466,16 +1166,17 @@ document.getElementById(
 let search =
 document.getElementById(
 "search"
-).value.toLowerCase();
+).value
+.toLowerCase();
 
 
-list.innerHTML = "";
+list.innerHTML="";
 
 
 let filtered =
-tasks.filter(function(item) {
+tasks.filter(function(item){
 
-return (
+return(
 
 item.subject
 .toLowerCase()
@@ -492,18 +1193,26 @@ item.task
 });
 
 
-if (
-filtered.length === 0
-) {
+if(
+filtered.length===0
+){
 
-list.innerHTML =
+list.innerHTML=
 `
 <div class="box empty">
-📭 ยังไม่มีงาน
+
+🐰
+
+<br><br>
+
+ยังไม่มีงานเลย~
+
+<br>
+
+ลองเพิ่มงานดูนะครับ 💗
+
 </div>
 `;
-
-updateStats();
 
 return;
 
@@ -511,7 +1220,7 @@ return;
 
 
 filtered.forEach(
-function(item) {
+function(item){
 
 let index =
 tasks.indexOf(item);
@@ -525,10 +1234,19 @@ item.completed
 
 list.innerHTML += `
 
-<div class="task ${completed}">
+<div
+class="task ${completed}"
+>
 
 <h3>
-📚 ${item.subject}
+${
+item.completed
+? "🌟"
+: "🌸"
+}
+
+${item.subject}
+
 </h3>
 
 <p>
@@ -544,17 +1262,22 @@ list.innerHTML += `
 
 ${
 item.completed
+
 ?
-"<p>🎉 ทำเสร็จแล้ว!</p>"
+
+"<p>🎉 เก่งมาก! ทำเสร็จแล้ว 💖</p>"
+
 :
+
 `
 <button
 class="done"
 onclick="completeTask(${index})"
 >
-✅ ทำเสร็จแล้ว
+✨ ทำเสร็จแล้ว
 </button>
 `
+
 }
 
 
@@ -562,7 +1285,7 @@ onclick="completeTask(${index})"
 class="edit"
 onclick="editTask(${index})"
 >
-✏️ แก้ไข
+🎀 แก้ไข
 </button>
 
 
@@ -577,90 +1300,54 @@ onclick="deleteTask(${index})"
 
 `;
 
+});
+
 }
 
-);
 
+/* =====================
+   COMPLETE
+===================== */
+
+function completeTask(index){
+
+tasks[index].completed=true;
+
+save();
+
+showTasks();
 
 updateStats();
 
-}
-
-
-/* =========================
-   สถิติ
-========================= */
-
-function updateStats() {
-
-let total =
-tasks.length;
-
-
-let completed =
-tasks.filter(
-item => item.completed
-).length;
-
-
-let remaining =
-total - completed;
-
-
-document.getElementById(
-"total"
-).innerText =
-total;
-
-
-document.getElementById(
-"completed"
-).innerText =
-completed;
-
-
-document.getElementById(
-"remaining"
-).innerText =
-remaining;
-
-}
-
-
-/* =========================
-   ทำเสร็จ
-========================= */
-
-function completeTask(index) {
-
-tasks[index].completed =
-true;
-
-
-saveTasks();
-
-showTasks();
-
 drawCalendar();
 
+
+alert(
+"🎉 เยี่ยมมากครับ! ทำงานเสร็จอีกหนึ่งงานแล้ว 💖"
+);
+
 }
 
 
-/* =========================
-   ลบ
-========================= */
+/* =====================
+   DELETE
+===================== */
 
-function deleteTask(index) {
+function deleteTask(index){
 
-if (
-confirm("ต้องการลบงานนี้หรือไม่?")
-) {
+if(
+confirm(
+"🗑️ ต้องการลบงานนี้ไหมครับ?"
+)
+){
 
 tasks.splice(index,1);
 
-saveTasks();
+save();
 
 showTasks();
+
+updateStats();
 
 drawCalendar();
 
@@ -669,11 +1356,11 @@ drawCalendar();
 }
 
 
-/* =========================
-   แก้ไข
-========================= */
+/* =====================
+   EDIT
+===================== */
 
-function editTask(index) {
+function editTask(index){
 
 let item =
 tasks[index];
@@ -685,9 +1372,9 @@ prompt(
 item.subject
 );
 
-
-if (subject === null)
-return;
+if(
+subject===null
+)return;
 
 
 let task =
@@ -696,47 +1383,31 @@ prompt(
 item.task
 );
 
-
-if (task === null)
-return;
+if(
+task===null
+)return;
 
 
 let date =
 prompt(
-"📅 วันส่ง YYYY-MM-DD",
+"📅 วันส่ง เช่น 2026-08-20",
 item.date
 );
 
-
-if (date === null)
-return;
+if(
+date===null
+)return;
 
 
 let time =
 prompt(
-"⏰ เวลา HH:MM",
+"⏰ เวลาส่ง เช่น 18:00",
 item.time
 );
 
-
-if (time === null)
-return;
-
-
-if (
-subject.trim() === "" ||
-task.trim() === "" ||
-date.trim() === "" ||
-time.trim() === ""
-) {
-
-alert(
-"กรุณากรอกข้อมูลให้ครบ"
-);
-
-return;
-
-}
+if(
+time===null
+)return;
 
 
 tasks[index].subject =
@@ -755,20 +1426,133 @@ tasks[index].time =
 time.trim();
 
 
-saveTasks();
+save();
 
 showTasks();
+
+updateStats();
 
 drawCalendar();
 
 }
 
 
-/* =========================
-   ปฏิทิน
-========================= */
+/* =====================
+   STATS
+===================== */
 
-let months = [
+function updateStats(){
+
+let total =
+tasks.length;
+
+
+let done =
+tasks.filter(
+item =>
+item.completed
+).length;
+
+
+let remaining =
+total-done;
+
+
+let percent =
+total===0
+?0
+:Math.round(
+(done/total)*100
+);
+
+
+document.getElementById(
+"total"
+).innerText =
+total;
+
+
+document.getElementById(
+"done"
+).innerText =
+done;
+
+
+document.getElementById(
+"remaining"
+).innerText =
+remaining;
+
+
+document.getElementById(
+"percent"
+).innerText =
+percent+"%";
+
+
+document.getElementById(
+"progressBar"
+).style.width =
+percent+"%";
+
+
+let message =
+document.getElementById(
+"message"
+);
+
+
+if(
+total===0
+){
+
+message.innerText =
+"🌱 มาเริ่มทำงานกันเถอะ!";
+
+}
+
+else if(
+percent<30
+){
+
+message.innerText =
+"🌱 ค่อย ๆ ทำไปนะ เราทำได้!";
+
+}
+
+else if(
+percent<70
+){
+
+message.innerText =
+"🌸 เก่งมาก! กำลังไปได้สวยเลย!";
+
+}
+
+else if(
+percent<100
+){
+
+message.innerText =
+"✨ ใกล้แล้ววว สู้ต่ออีกนิด!";
+
+}
+
+else{
+
+message.innerText =
+"🎉 เยี่ยมที่สุด! งานเสร็จหมดแล้ว! 💖";
+
+}
+
+}
+
+
+/* =====================
+   CALENDAR
+===================== */
+
+let months=[
 
 "มกราคม",
 "กุมภาพันธ์",
@@ -786,19 +1570,19 @@ let months = [
 ];
 
 
-function dateString(
+function makeDate(
 year,
 month,
 day
-) {
+){
 
-return (
+return(
 
-year +
-"-" +
-String(month + 1)
-.padStart(2,"0") +
-"-" +
+year+
+"-"+
+String(month+1)
+.padStart(2,"0")+
+"-"+
 String(day)
 .padStart(2,"0")
 
@@ -807,7 +1591,7 @@ String(day)
 }
 
 
-function drawCalendar() {
+function drawCalendar(){
 
 let calendar =
 document.getElementById(
@@ -822,23 +1606,26 @@ document.getElementById(
 
 
 let year =
-calendarDate.getFullYear();
+calendarDate
+.getFullYear();
 
 
 let month =
-calendarDate.getMonth();
+calendarDate
+.getMonth();
 
 
 title.innerText =
-months[month] +
-" " +
-(year + 543);
+
+months[month]+
+" "+
+(year+543);
 
 
-calendar.innerHTML = "";
+calendar.innerHTML="";
 
 
-let firstDay =
+let first =
 new Date(
 year,
 month,
@@ -849,21 +1636,19 @@ month,
 let days =
 new Date(
 year,
-month + 1,
+month+1,
 0
 ).getDate();
 
 
-for (
-let i = 0;
-i < firstDay;
+for(
+let i=0;
+i<first;
 i++
-) {
+){
 
 calendar.innerHTML +=
-`
-<div></div>
-`;
+"<div></div>";
 
 }
 
@@ -872,14 +1657,14 @@ let today =
 new Date();
 
 
-for (
-let day = 1;
-day <= days;
+for(
+let day=1;
+day<=days;
 day++
-) {
+){
 
 let date =
-dateString(
+makeDate(
 year,
 month,
 day
@@ -889,35 +1674,54 @@ day
 let dayTasks =
 tasks.filter(
 item =>
-item.date === date
+item.date===date
 );
 
 
-let todayClass = "";
+let todayClass="";
 
 
-if (
-today.getFullYear() === year &&
-today.getMonth() === month &&
-today.getDate() === day
-) {
+if(
 
-todayClass = "today";
+today.getFullYear()===year &&
+
+today.getMonth()===month &&
+
+today.getDate()===day
+
+){
+
+todayClass="today";
 
 }
 
 
-let taskText = "";
+let dots="";
 
 
-if (
-dayTasks.length > 0
-) {
+dayTasks
+.slice(0,2)
+.forEach(
+function(item){
 
-taskText =
+dots +=
 `
-<div class="has-task">
-📌 ${dayTasks.length} งาน
+<div class="task-dot">
+🌸 ${item.subject}
+</div>
+`;
+
+});
+
+
+if(
+dayTasks.length>2
+){
+
+dots +=
+`
+<div class="task-dot">
++${dayTasks.length-2} งาน
 </div>
 `;
 
@@ -928,14 +1732,16 @@ calendar.innerHTML += `
 
 <div
 class="day ${todayClass}"
-onclick="selectDate('${date}')"
+onclick="
+selectDate('${date}')
+"
 >
 
-<div>
+<strong>
 ${day}
-</div>
+</strong>
 
-${taskText}
+${dots}
 
 </div>
 
@@ -946,19 +1752,30 @@ ${taskText}
 }
 
 
-function changeMonth(amount) {
+/* =====================
+   MONTH
+===================== */
+
+function changeMonth(amount){
 
 calendarDate.setMonth(
-calendarDate.getMonth() + amount
-);
 
+calendarDate.getMonth()
++
+amount
+
+);
 
 drawCalendar();
 
 }
 
 
-function selectDate(date) {
+/* =====================
+   SELECT DATE
+===================== */
+
+function selectDate(date){
 
 let box =
 document.getElementById(
@@ -969,19 +1786,22 @@ document.getElementById(
 let dayTasks =
 tasks.filter(
 item =>
-item.date === date
+item.date===date
 );
 
 
-if (
-dayTasks.length === 0
-) {
+if(
+dayTasks.length===0
+){
 
-box.innerHTML =
+box.innerHTML=
 `
-📅 ${date}
+🌷 ${date}
+
 <br><br>
-📭 วันนี้ไม่มีงาน
+
+📭 วันนี้ไม่มีงานครับ
+
 `;
 
 return;
@@ -989,30 +1809,35 @@ return;
 }
 
 
-let html =
+let html=
 `
 <strong>
-📅 งานวันที่ ${date}
+🌸 งานวันที่ ${date}
 </strong>
+
 <br><br>
 `;
 
 
 dayTasks.forEach(
-function(item) {
+function(item){
 
 html +=
 `
 <div
 style="
+padding:12px;
+margin:6px 0;
 background:white;
-padding:10px;
-margin:5px 0;
-border-radius:10px;
+border-radius:12px;
 "
 >
 
-${item.completed ? "✅" : "📌"}
+${
+item.completed
+? "🌟"
+: "📌"
+}
 
 <strong>
 ${item.subject}
@@ -1038,15 +1863,17 @@ html;
 }
 
 
-/* =========================
-   เริ่มต้น
-========================= */
+/* =====================
+   START
+===================== */
 
 showTasks();
+
+updateStats();
 
 drawCalendar();
 
 </script>
 
 </body>
-</html>
+    </html>
