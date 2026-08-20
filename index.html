@@ -1,21 +1,48 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>My Cute Task 🐰</title>
 
+<link
+    rel="manifest"
+    href="./manifest.json"
+>
+
+<meta
+    name="theme-color"
+    content="#f9a8d4"
+>
+
+
 <style>
+
+/* =========================
+   BASIC
+========================= */
 
 * {
     box-sizing: border-box;
 }
 
 body {
+
     margin: 0;
+
     min-height: 100vh;
-    font-family: Arial, sans-serif;
+
+    font-family:
+        Arial,
+        sans-serif;
+
     color: #5b5368;
 
     background:
@@ -28,111 +55,168 @@ body {
 
     overflow-x: hidden;
 
-    transition: 0.5s;
+    transition: .5s;
+
 }
 
 
 /* =========================
-   พื้นหลังตกแต่ง
+   BACKGROUND
 ========================= */
 
 .background {
+
     position: fixed;
+
     inset: 0;
+
     pointer-events: none;
+
     overflow: hidden;
+
     z-index: 0;
+
+}
+
+.cloud,
+.flower,
+.star,
+.heart {
+
+    position: absolute;
+
+    animation:
+        floating 5s
+        ease-in-out
+        infinite;
+
 }
 
 .cloud {
-    position: absolute;
+
     font-size: 65px;
-    opacity: .75;
-    animation: float 5s ease-in-out infinite;
+
+    opacity: .7;
+
 }
 
 .cloud1 {
+
     top: 40px;
+
     left: 3%;
+
 }
 
 .cloud2 {
+
     top: 130px;
+
     right: 4%;
+
     animation-delay: 2s;
+
 }
 
 .flower {
-    position: absolute;
+
     font-size: 40px;
-    animation: float 4s ease-in-out infinite;
+
 }
 
 .flower1 {
+
     top: 35%;
+
     left: 2%;
+
 }
 
 .flower2 {
+
     top: 65%;
+
     right: 3%;
-    animation-delay: 1s;
+
 }
 
 .flower3 {
+
     bottom: 8%;
+
     left: 6%;
-    animation-delay: 2s;
+
 }
 
 .star {
-    position: absolute;
+
     font-size: 28px;
-    animation: sparkle 2s infinite;
+
+    animation:
+        sparkle 2s infinite;
+
 }
 
 .star1 {
+
     top: 18%;
+
     left: 30%;
+
 }
 
 .star2 {
+
     top: 28%;
+
     right: 28%;
-    animation-delay: 1s;
+
 }
 
 .star3 {
+
     bottom: 20%;
+
     left: 25%;
-    animation-delay: .5s;
+
 }
 
 .heart {
-    position: absolute;
+
     font-size: 27px;
-    animation: float 5s ease-in-out infinite;
+
 }
 
 .heart1 {
+
     top: 25%;
+
     left: 15%;
+
 }
 
 .heart2 {
+
     top: 45%;
+
     right: 12%;
-    animation-delay: 2s;
+
 }
 
-@keyframes float {
+@keyframes floating {
 
     0%,100% {
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
+
     }
 
     50% {
-        transform: translateY(-15px);
+
+        transform:
+            translateY(-15px);
+
     }
 
 }
@@ -140,33 +224,47 @@ body {
 @keyframes sparkle {
 
     0%,100% {
+
         opacity: .3;
-        transform: scale(.8);
+
+        transform:
+            scale(.8);
+
     }
 
     50% {
+
         opacity: 1;
-        transform: scale(1.3);
+
+        transform:
+            scale(1.3);
+
     }
 
 }
 
 
 /* =========================
-   Container
+   CONTAINER
 ========================= */
 
 .container {
+
     width: 92%;
+
     max-width: 900px;
+
     margin: 25px auto;
+
     position: relative;
+
     z-index: 1;
+
 }
 
 
 /* =========================
-   Header
+   HEADER
 ========================= */
 
 .header {
@@ -178,7 +276,12 @@ body {
     padding: 30px 20px;
 
     background:
-        rgba(255,255,255,.92);
+        rgba(
+            255,
+            255,
+            255,
+            .94
+        );
 
     border-radius: 35px;
 
@@ -186,9 +289,12 @@ body {
 
     box-shadow:
         0 15px 35px
-        rgba(130,90,150,.2);
-
-    overflow: hidden;
+        rgba(
+            130,
+            90,
+            150,
+            .2
+        );
 
 }
 
@@ -225,18 +331,24 @@ body {
 @keyframes bunnyBounce {
 
     0%,100% {
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
+
     }
 
     50% {
-        transform: translateY(-12px);
+
+        transform:
+            translateY(-12px);
+
     }
 
 }
 
 
 /* =========================
-   Dark mode button
+   DARK BUTTON
 ========================= */
 
 .mode-button {
@@ -244,6 +356,7 @@ body {
     position: absolute;
 
     top: 15px;
+
     right: 15px;
 
     background: #fce7f3;
@@ -254,7 +367,7 @@ body {
 
 
 /* =========================
-   Stats
+   STATS
 ========================= */
 
 .stats {
@@ -282,30 +395,31 @@ body {
 
     box-shadow:
         0 7px 15px
-        rgba(120,80,150,.12);
-
-    transition: .25s;
-
-}
-
-.stat:hover {
-
-    transform:
-        translateY(-6px)
-        rotate(2deg);
+        rgba(
+            120,
+            80,
+            150,
+            .12
+        );
 
 }
 
 .stat:nth-child(1) {
+
     background: #ffe4f1;
+
 }
 
 .stat:nth-child(2) {
+
     background: #e8e0ff;
+
 }
 
 .stat:nth-child(3) {
+
     background: #dcfce7;
+
 }
 
 .stat-icon {
@@ -326,7 +440,7 @@ body {
 
 
 /* =========================
-   Card
+   CARD
 ========================= */
 
 .card {
@@ -336,7 +450,12 @@ body {
     padding: 25px;
 
     background:
-        rgba(255,255,255,.94);
+        rgba(
+            255,
+            255,
+            255,
+            .94
+        );
 
     border-radius: 28px;
 
@@ -344,7 +463,12 @@ body {
 
     box-shadow:
         0 10px 30px
-        rgba(120,80,150,.15);
+        rgba(
+            120,
+            80,
+            150,
+            .15
+        );
 
 }
 
@@ -358,7 +482,7 @@ body {
 
 
 /* =========================
-   Progress
+   PROGRESS
 ========================= */
 
 .progress-box {
@@ -413,7 +537,7 @@ body {
 
 
 /* =========================
-   Input
+   INPUT
 ========================= */
 
 label {
@@ -455,14 +579,11 @@ input:focus {
 
     border-color: #c084fc;
 
-    box-shadow:
-        0 0 0 4px #ede9fe;
-
 }
 
 
 /* =========================
-   Buttons
+   BUTTON
 ========================= */
 
 button {
@@ -493,7 +614,8 @@ button:hover {
 
 button:active {
 
-    transform: scale(.94);
+    transform:
+        scale(.94);
 
 }
 
@@ -536,9 +658,24 @@ button:active {
 
 }
 
+.notify {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fb7185,
+            #c084fc
+        );
+
+    color: white;
+
+    width: 100%;
+
+}
+
 
 /* =========================
-   Task
+   TASK
 ========================= */
 
 .task {
@@ -558,16 +695,12 @@ button:active {
 
     box-shadow:
         0 7px 18px
-        rgba(120,80,150,.1);
-
-    transition: .25s;
-
-}
-
-.task:hover {
-
-    transform:
-        translateX(6px);
+        rgba(
+            120,
+            80,
+            150,
+            .1
+        );
 
 }
 
@@ -578,6 +711,7 @@ button:active {
     position: absolute;
 
     right: 15px;
+
     top: 10px;
 
     font-size: 25px;
@@ -602,7 +736,7 @@ button:active {
 
 
 /* =========================
-   Calendar
+   CALENDAR
 ========================= */
 
 .calendar-head {
@@ -672,13 +806,12 @@ button:active {
 
     border: 2px solid transparent;
 
-    transition: .2s;
-
 }
 
 .day:hover {
 
-    transform: scale(1.05);
+    transform:
+        scale(1.04);
 
     background: #fce7f3;
 
@@ -686,9 +819,11 @@ button:active {
 
 .today {
 
-    border-color: #f472b6;
+    border-color:
+        #f472b6;
 
-    background: #fdf2f8;
+    background:
+        #fdf2f8;
 
 }
 
@@ -717,13 +852,14 @@ button:active {
     background: #fff7fb;
 
     border:
-        2px dashed #f9a8d4;
+        2px dashed
+        #f9a8d4;
 
 }
 
 
 /* =========================
-   Walking Bunny
+   WALKING BUNNY
 ========================= */
 
 #walkingBunny {
@@ -741,7 +877,9 @@ button:active {
     pointer-events: none;
 
     animation:
-        bunnyWalk 18s linear infinite;
+        bunnyWalk 18s
+        linear
+        infinite;
 
 }
 
@@ -751,23 +889,32 @@ button:active {
 
         left: -80px;
 
-        transform: scaleX(1);
+        transform:
+            scaleX(1);
 
     }
 
     45% {
 
-        left: calc(100% - 60px);
+        left:
+            calc(
+                100% - 60px
+            );
 
-        transform: scaleX(1);
+        transform:
+            scaleX(1);
 
     }
 
     50% {
 
-        left: calc(100% - 60px);
+        left:
+            calc(
+                100% - 60px
+            );
 
-        transform: scaleX(-1);
+        transform:
+            scaleX(-1);
 
     }
 
@@ -775,7 +922,8 @@ button:active {
 
         left: -80px;
 
-        transform: scaleX(-1);
+        transform:
+            scaleX(-1);
 
     }
 
@@ -783,7 +931,8 @@ button:active {
 
         left: -80px;
 
-        transform: scaleX(1);
+        transform:
+            scaleX(1);
 
     }
 
@@ -791,7 +940,7 @@ button:active {
 
 
 /* =========================
-   Floating Hearts
+   FLOATING HEART
 ========================= */
 
 .floating-heart {
@@ -805,7 +954,9 @@ button:active {
     font-size: 28px;
 
     animation:
-        heartUp 1.5s ease-out forwards;
+        heartUp 1.5s
+        ease-out
+        forwards;
 
 }
 
@@ -835,99 +986,7 @@ button:active {
 
 
 /* =========================
-   Celebration
-========================= */
-
-.celebration {
-
-    position: fixed;
-
-    inset: 0;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    background:
-        rgba(255,220,240,.75);
-
-    z-index: 100000;
-
-    pointer-events: none;
-
-    animation:
-        celebrationFade 2s forwards;
-
-}
-
-.celebration-box {
-
-    padding: 35px;
-
-    background: white;
-
-    border-radius: 30px;
-
-    text-align: center;
-
-    box-shadow:
-        0 15px 40px
-        rgba(120,80,150,.25);
-
-    animation:
-        celebrationPop .5s;
-
-}
-
-.celebration-box div {
-
-    font-size: 60px;
-
-}
-
-.celebration-box h2 {
-
-    color: #ec4899;
-
-}
-
-@keyframes celebrationPop {
-
-    from {
-
-        transform: scale(.5);
-
-    }
-
-    to {
-
-        transform: scale(1);
-
-    }
-
-}
-
-@keyframes celebrationFade {
-
-    0%,80% {
-
-        opacity: 1;
-
-    }
-
-    100% {
-
-        opacity: 0;
-
-    }
-
-}
-
-
-/* =========================
-   Dark Mode
+   DARK MODE
 ========================= */
 
 body.dark {
@@ -948,9 +1007,12 @@ body.dark .card,
 body.dark .header {
 
     background:
-        rgba(35,30,55,.95);
-
-    color: #eee;
+        rgba(
+            35,
+            30,
+            55,
+            .95
+        );
 
 }
 
@@ -974,15 +1036,9 @@ body.dark .selected-info {
 
 }
 
-body.dark .mode-button {
-
-    background: #55426b;
-
-}
-
 
 /* =========================
-   Mobile
+   MOBILE
 ========================= */
 
 @media (max-width:600px) {
@@ -1005,12 +1061,6 @@ body.dark .mode-button {
 
     }
 
-    .stats {
-
-        gap: 6px;
-
-    }
-
     .number {
 
         font-size: 23px;
@@ -1028,15 +1078,14 @@ body.dark .mode-button {
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =========================
-     Background
-========================= -->
+<!-- BACKGROUND -->
 
 <div class="background">
 
@@ -1066,7 +1115,7 @@ body.dark .mode-button {
 <div class="container">
 
 
-<!-- Header -->
+<!-- HEADER -->
 
 <div class="header">
 
@@ -1092,7 +1141,7 @@ body.dark .mode-button {
 </div>
 
 
-<!-- Stats -->
+<!-- STATS -->
 
 <div class="stats">
 
@@ -1152,7 +1201,7 @@ body.dark .mode-button {
 </div>
 
 
-<!-- Progress -->
+<!-- PROGRESS -->
 
 <div class="card progress-box">
 
@@ -1183,7 +1232,30 @@ body.dark .mode-button {
 </div>
 
 
-<!-- Add -->
+<!-- NOTIFICATION -->
+
+<div class="card">
+
+    <h2>
+        🔔 การแจ้งเตือน
+    </h2>
+
+    <p>
+        เปิดการแจ้งเตือนเพื่อให้เว็บเตือน
+        เมื่อมีงานใกล้ถึงกำหนดครับ 💗
+    </p>
+
+    <button
+        class="notify"
+        onclick="enableNotifications()"
+    >
+        🔔 เปิดการแจ้งเตือน
+    </button>
+
+</div>
+
+
+<!-- ADD TASK -->
 
 <div class="card">
 
@@ -1243,7 +1315,7 @@ body.dark .mode-button {
 </div>
 
 
-<!-- Calendar -->
+<!-- CALENDAR -->
 
 <div class="card">
 
@@ -1297,7 +1369,7 @@ body.dark .mode-button {
 </div>
 
 
-<!-- Search -->
+<!-- SEARCH -->
 
 <div class="card">
 
@@ -1315,7 +1387,11 @@ body.dark .mode-button {
 </div>
 
 
-<h2 style="color:#db2777;">
+<h2
+    style="
+        color:#db2777;
+    "
+>
     🎀 งานของฉัน
 </h2>
 
@@ -1336,7 +1412,7 @@ body.dark .mode-button {
 </div>
 
 
-<!-- Walking Bunny -->
+<!-- WALKING BUNNY -->
 
 <div id="walkingBunny">
     🐰
@@ -1346,7 +1422,7 @@ body.dark .mode-button {
 <script>
 
 /* =========================
-   DATA
+   TASK DATA
 ========================= */
 
 let tasks =
@@ -1374,32 +1450,263 @@ function saveTasks() {
 
 
 /* =========================
-   ADD
+   SERVICE WORKER
+========================= */
+
+if (
+    "serviceWorker"
+    in navigator
+) {
+
+    window.addEventListener(
+        "load",
+        async function() {
+
+            try {
+
+                await navigator
+                    .serviceWorker
+                    .register(
+                        "./sw.js"
+                    );
+
+                console.log(
+                    "🐰 Service Worker พร้อม"
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Service Worker error:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================
+   NOTIFICATION PERMISSION
+========================= */
+
+async function enableNotifications() {
+
+    if (
+        !("Notification" in window)
+    ) {
+
+        alert(
+            "🥺 อุปกรณ์นี้ไม่รองรับการแจ้งเตือนครับ"
+        );
+
+        return;
+
+    }
+
+
+    const permission =
+        await Notification
+            .requestPermission();
+
+
+    if (
+        permission === "granted"
+    ) {
+
+        alert(
+            "🔔 เปิดการแจ้งเตือนแล้วครับ 💗"
+        );
+
+        checkNotifications();
+
+    }
+
+    else {
+
+        alert(
+            "🥺 กรุณาอนุญาตการแจ้งเตือนครับ"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   CHECK NOTIFICATIONS
+========================= */
+
+async function checkNotifications() {
+
+    if (
+        !("Notification" in window)
+    ) {
+        return;
+    }
+
+
+    if (
+        Notification.permission
+        !== "granted"
+    ) {
+        return;
+    }
+
+
+    const now =
+        new Date();
+
+
+    let changed =
+        false;
+
+
+    for (
+        const item of tasks
+    ) {
+
+        if (
+            item.completed
+        ) {
+            continue;
+        }
+
+
+        const deadline =
+            new Date(
+                item.date +
+                "T" +
+                item.time
+            );
+
+
+        const difference =
+            deadline - now;
+
+
+        if (
+
+            difference > 0 &&
+
+            difference <=
+                60 * 60 * 1000 &&
+
+            !item.notified
+
+        ) {
+
+            item.notified = true;
+
+            changed = true;
+
+
+            if (
+                "serviceWorker"
+                in navigator
+            ) {
+
+                const registration =
+                    await navigator
+                        .serviceWorker
+                        .ready;
+
+
+                registration
+                    .showNotification(
+                        "🔔 งานใกล้ถึงกำหนด!",
+                        {
+
+                            body:
+                                item.subject +
+                                "\n" +
+                                item.task +
+                                "\n⏰ " +
+                                item.time,
+
+                            icon:
+                                "./icon.png",
+
+                            badge:
+                                "./icon.png",
+
+                            vibrate:
+                                [
+                                    200,
+                                    100,
+                                    200
+                                ]
+
+                        }
+                    );
+
+            }
+
+        }
+
+    }
+
+
+    if (changed) {
+
+        saveTasks();
+
+    }
+
+}
+
+
+/* เช็กทุก 1 นาที */
+
+setInterval(
+    checkNotifications,
+    60000
+);
+
+
+/* =========================
+   ADD TASK
 ========================= */
 
 function addTask() {
 
     const subject =
         document
-        .getElementById("subject")
-        .value
-        .trim();
+            .getElementById(
+                "subject"
+            )
+            .value
+            .trim();
+
 
     const task =
         document
-        .getElementById("task")
-        .value
-        .trim();
+            .getElementById(
+                "task"
+            )
+            .value
+            .trim();
+
 
     const date =
         document
-        .getElementById("date")
-        .value;
+            .getElementById(
+                "date"
+            )
+            .value;
+
 
     const time =
         document
-        .getElementById("time")
-        .value;
+            .getElementById(
+                "time"
+            )
+            .value;
 
 
     if (
@@ -1410,7 +1717,7 @@ function addTask() {
     ) {
 
         alert(
-            "🌸 กรุณากรอกข้อมูลให้ครบก่อนนะครับ"
+            "🌸 กรุณากรอกข้อมูลให้ครบครับ"
         );
 
         return;
@@ -1420,15 +1727,23 @@ function addTask() {
 
     tasks.push({
 
-        subject: subject,
+        subject:
+            subject,
 
-        task: task,
+        task:
+            task,
 
-        date: date,
+        date:
+            date,
 
-        time: time,
+        time:
+            time,
 
-        completed: false
+        completed:
+            false,
+
+        notified:
+            false
 
     });
 
@@ -1442,35 +1757,41 @@ function addTask() {
     drawCalendar();
 
 
-    document.getElementById(
-        "subject"
-    ).value = "";
+    document
+        .getElementById(
+            "subject"
+        )
+        .value = "";
 
-    document.getElementById(
-        "task"
-    ).value = "";
 
-    document.getElementById(
-        "date"
-    ).value = "";
+    document
+        .getElementById(
+            "task"
+        )
+        .value = "";
 
-    document.getElementById(
-        "time"
-    ).value = "";
+
+    document
+        .getElementById(
+            "date"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "time"
+        )
+        .value = "";
 
 
     createHearts(8);
-
-
-    alert(
-        "💖 เพิ่มงานเรียบร้อยแล้ว!"
-    );
 
 }
 
 
 /* =========================
-   SHOW TASK
+   SHOW TASKS
 ========================= */
 
 function showTasks() {
@@ -1483,9 +1804,11 @@ function showTasks() {
 
     const search =
         document
-        .getElementById("search")
-        .value
-        .toLowerCase();
+            .getElementById(
+                "search"
+            )
+            .value
+            .toLowerCase();
 
 
     list.innerHTML = "";
@@ -1498,14 +1821,14 @@ function showTasks() {
                 return (
 
                     item.subject
-                    .toLowerCase()
-                    .includes(search)
+                        .toLowerCase()
+                        .includes(search)
 
                     ||
 
                     item.task
-                    .toLowerCase()
-                    .includes(search)
+                        .toLowerCase()
+                        .includes(search)
 
                 );
 
@@ -1513,12 +1836,16 @@ function showTasks() {
         );
 
 
-    if (!filtered.length) {
+    if (
+        filtered.length === 0
+    ) {
 
         list.innerHTML = `
 
-            <div class="card"
-                 style="text-align:center;">
+            <div
+                class="card"
+                style="text-align:center;"
+            >
 
                 🐰
 
@@ -1554,9 +1881,12 @@ function showTasks() {
 
             list.innerHTML += `
 
-                <div class="task ${completed}">
+                <div
+                    class="task ${completed}"
+                >
 
                     <h3>
+
                         ${
                             item.completed
                             ? "🌟"
@@ -1564,6 +1894,7 @@ function showTasks() {
                         }
 
                         ${item.subject}
+
                     </h3>
 
                     <p>
@@ -1571,9 +1902,13 @@ function showTasks() {
                     </p>
 
                     <p>
+
                         📅 ${item.date}
+
                         <br>
+
                         ⏰ ${item.time}
+
                     </p>
 
 
@@ -1583,28 +1918,40 @@ function showTasks() {
                         ?
 
                         `
+
                         <p>
                             🎉 เก่งมาก!
                             งานนี้เสร็จแล้ว 💖
                         </p>
+
                         `
 
                         :
 
                         `
+
                         <button
                             class="done"
-                            onclick="completeTask(${index})"
+                            onclick="
+                                completeTask(
+                                    ${index}
+                                )
+                            "
                         >
                             ✨ ทำเสร็จแล้ว
                         </button>
+
                         `
                     }
 
 
                     <button
                         class="edit"
-                        onclick="editTask(${index})"
+                        onclick="
+                            editTask(
+                                ${index}
+                            )
+                        "
                     >
                         🎀 แก้ไข
                     </button>
@@ -1612,7 +1959,11 @@ function showTasks() {
 
                     <button
                         class="delete"
-                        onclick="deleteTask(${index})"
+                        onclick="
+                            deleteTask(
+                                ${index}
+                            )
+                        "
                     >
                         🗑️ ลบ
                     </button>
@@ -1633,7 +1984,8 @@ function showTasks() {
 
 function completeTask(index) {
 
-    tasks[index].completed = true;
+    tasks[index]
+        .completed = true;
 
 
     saveTasks();
@@ -1649,12 +2001,15 @@ function completeTask(index) {
 
 
     if (
+
         tasks.length > 0 &&
+
         tasks.every(
             function(item) {
                 return item.completed;
             }
         )
+
     ) {
 
         celebrate();
@@ -1676,7 +2031,11 @@ function deleteTask(index) {
         )
     ) {
 
-        tasks.splice(index, 1);
+        tasks.splice(
+            index,
+            1
+        );
+
 
         saveTasks();
 
@@ -1707,7 +2066,12 @@ function editTask(index) {
             item.subject
         );
 
-    if (subject === null) return;
+
+    if (
+        subject === null
+    ) {
+        return;
+    }
 
 
     const task =
@@ -1716,38 +2080,60 @@ function editTask(index) {
             item.task
         );
 
-    if (task === null) return;
+
+    if (
+        task === null
+    ) {
+        return;
+    }
 
 
     const date =
         prompt(
-            "📅 วันส่ง เช่น 2026-08-20",
+            "📅 วันส่ง",
             item.date
         );
 
-    if (date === null) return;
+
+    if (
+        date === null
+    ) {
+        return;
+    }
 
 
     const time =
         prompt(
-            "⏰ เวลา เช่น 18:00",
+            "⏰ เวลาส่ง",
             item.time
         );
 
-    if (time === null) return;
+
+    if (
+        time === null
+    ) {
+        return;
+    }
 
 
     tasks[index].subject =
         subject.trim();
 
+
     tasks[index].task =
         task.trim();
+
 
     tasks[index].date =
         date.trim();
 
+
     tasks[index].time =
         time.trim();
+
+
+    tasks[index].notified =
+        false;
 
 
     saveTasks();
@@ -1774,7 +2160,9 @@ function updateStats() {
     const done =
         tasks.filter(
             function(item) {
+
                 return item.completed;
+
             }
         ).length;
 
@@ -1785,73 +2173,105 @@ function updateStats() {
 
     const percent =
         total === 0
+
         ? 0
-        : Math.round(
-            done / total * 100
+
+        :
+
+        Math.round(
+            done /
+            total *
+            100
         );
 
 
-    document.getElementById(
-        "total"
-    ).innerText = total;
+    document
+        .getElementById(
+            "total"
+        )
+        .innerText =
+        total;
 
 
-    document.getElementById(
-        "remaining"
-    ).innerText = remaining;
+    document
+        .getElementById(
+            "remaining"
+        )
+        .innerText =
+        remaining;
 
 
-    document.getElementById(
-        "done"
-    ).innerText = done;
+    document
+        .getElementById(
+            "done"
+        )
+        .innerText =
+        done;
 
 
-    document.getElementById(
-        "percent"
-    ).innerText =
+    document
+        .getElementById(
+            "percent"
+        )
+        .innerText =
         percent + "%";
 
 
-    document.getElementById(
-        "progressBar"
-    ).style.width =
+    document
+        .getElementById(
+            "progressBar"
+        )
+        .style.width =
         percent + "%";
 
 
     const message =
-        document.getElementById(
-            "message"
-        );
+        document
+            .getElementById(
+                "message"
+            );
 
 
-    if (total === 0) {
+    if (
+        total === 0
+    ) {
 
         message.innerText =
             "🌱 มาเริ่มกันเลย!";
 
     }
-    else if (percent < 30) {
+
+    else if (
+        percent < 30
+    ) {
 
         message.innerText =
             "🌱 ค่อย ๆ ทำไปนะ เราทำได้!";
 
     }
-    else if (percent < 70) {
+
+    else if (
+        percent < 70
+    ) {
 
         message.innerText =
             "🌸 เก่งมาก! กำลังไปได้สวย!";
 
     }
-    else if (percent < 100) {
+
+    else if (
+        percent < 100
+    ) {
 
         message.innerText =
-            "✨ ใกล้เสร็จแล้ว สู้ต่ออีกนิด!";
+            "✨ ใกล้เสร็จแล้ว!";
 
     }
+
     else {
 
         message.innerText =
-            "🎉 งานเสร็จหมดแล้ว! เก่งที่สุด!";
+            "🎉 งานเสร็จหมดแล้ว!";
 
     }
 
@@ -1890,11 +2310,18 @@ function makeDate(
 
         year +
         "-" +
-        String(month + 1)
-            .padStart(2,"0") +
+        String(
+            month + 1
+        ).padStart(
+            2,
+            "0"
+        ) +
         "-" +
         String(day)
-            .padStart(2,"0")
+            .padStart(
+                2,
+                "0"
+            )
 
     );
 
@@ -1916,11 +2343,13 @@ function drawCalendar() {
 
 
     const year =
-        calendarDate.getFullYear();
+        calendarDate
+            .getFullYear();
 
 
     const month =
-        calendarDate.getMonth();
+        calendarDate
+            .getMonth();
 
 
     title.innerText =
@@ -1981,7 +2410,11 @@ function drawCalendar() {
         const dayTasks =
             tasks.filter(
                 function(item) {
-                    return item.date === date;
+
+                    return (
+                        item.date === date
+                    );
+
                 }
             );
 
@@ -1991,15 +2424,23 @@ function drawCalendar() {
 
         if (
 
-            today.getFullYear() === year &&
+            today.getFullYear()
+                === year
 
-            today.getMonth() === month &&
+            &&
 
-            today.getDate() === day
+            today.getMonth()
+                === month
+
+            &&
+
+            today.getDate()
+                === day
 
         ) {
 
-            todayClass = "today";
+            todayClass =
+                "today";
 
         }
 
@@ -2008,40 +2449,34 @@ function drawCalendar() {
 
 
         dayTasks
-        .slice(0,2)
-        .forEach(
-            function(item) {
+            .slice(0,2)
+            .forEach(
+                function(item) {
 
-                dots += `
+                    dots += `
 
-                    <div class="task-dot">
-                        🌸 ${item.subject}
-                    </div>
+                        <div
+                            class="task-dot"
+                        >
+                            🌸
+                            ${item.subject}
+                        </div>
 
-                `;
+                    `;
 
-            }
-        );
-
-
-        if (dayTasks.length > 2) {
-
-            dots += `
-
-                <div class="task-dot">
-                    +${dayTasks.length - 2} งาน
-                </div>
-
-            `;
-
-        }
+                }
+            );
 
 
         calendar.innerHTML += `
 
             <div
                 class="day ${todayClass}"
-                onclick="selectDate('${date}')"
+                onclick="
+                    selectDate(
+                        '${date}'
+                    )
+                "
             >
 
                 <strong>
@@ -2059,14 +2494,13 @@ function drawCalendar() {
 }
 
 
-/* =========================
-   MONTH
-========================= */
-
 function changeMonth(amount) {
 
     calendarDate.setMonth(
-        calendarDate.getMonth() + amount
+
+        calendarDate.getMonth()
+        + amount
+
     );
 
 
@@ -2074,10 +2508,6 @@ function changeMonth(amount) {
 
 }
 
-
-/* =========================
-   DATE
-========================= */
 
 function selectDate(date) {
 
@@ -2090,12 +2520,18 @@ function selectDate(date) {
     const dayTasks =
         tasks.filter(
             function(item) {
-                return item.date === date;
+
+                return (
+                    item.date === date
+                );
+
             }
         );
 
 
-    if (!dayTasks.length) {
+    if (
+        dayTasks.length === 0
+    ) {
 
         box.innerHTML = `
 
@@ -2163,7 +2599,8 @@ function selectDate(date) {
     );
 
 
-    box.innerHTML = html;
+    box.innerHTML =
+        html;
 
 }
 
@@ -2172,7 +2609,9 @@ function selectDate(date) {
    HEART EFFECT
 ========================= */
 
-function createHearts(amount) {
+function createHearts(
+    amount
+) {
 
     for (
         let i = 0;
@@ -2194,13 +2633,14 @@ function createHearts(amount) {
 
 
                 const emojis = [
+
                     "💗",
                     "💖",
                     "💕",
                     "✨",
                     "🌸",
                     "⭐"
-                    "🐽"
+
                 ];
 
 
@@ -2216,20 +2656,23 @@ function createHearts(amount) {
                 heart.style.left =
                     (
                         10 +
-                        Math.random() * 80
+                        Math.random() *
+                        80
                     ) + "%";
 
 
                 heart.style.bottom =
                     (
                         80 +
-                        Math.random() * 120
+                        Math.random() *
+                        120
                     ) + "px";
 
 
-                document.body.appendChild(
-                    heart
-                );
+                document.body
+                    .appendChild(
+                        heart
+                    );
 
 
                 setTimeout(
@@ -2262,27 +2705,73 @@ function celebrate() {
         );
 
 
-    box.className =
-        "celebration";
+    box.style.position =
+        "fixed";
+
+
+    box.style.inset =
+        "0";
+
+
+    box.style.zIndex =
+        "100000";
+
+
+    box.style.display =
+        "flex";
+
+
+    box.style.alignItems =
+        "center";
+
+
+    box.style.justifyContent =
+        "center";
+
+
+    box.style.background =
+        "rgba(255,220,240,.75)";
 
 
     box.innerHTML = `
 
-        <div class="celebration-box">
+        <div
+            style="
+                padding:35px;
+                background:white;
+                border-radius:30px;
+                text-align:center;
+                box-shadow:
+                    0 15px 40px
+                    rgba(120,80,150,.25);
+            "
+        >
 
-            <div>
+            <div
+                style="
+                    font-size:60px;
+                "
+            >
                 🐰🎉
             </div>
 
-            <h2>
+            <h2
+                style="
+                    color:#ec4899;
+                "
+            >
                 เยี่ยมที่สุด!
             </h2>
 
             <p>
-                คุณทำงานเสร็จหมดแล้ว สุดยอดด!💖
+                งานเสร็จหมดแล้ว 💖
             </p>
 
-            <div>
+            <div
+                style="
+                    font-size:35px;
+                "
+            >
                 🌸✨💗✨🌸
             </div>
 
@@ -2291,9 +2780,10 @@ function celebrate() {
     `;
 
 
-    document.body.appendChild(
-        box
-    );
+    document.body
+        .appendChild(
+            box
+        );
 
 
     createHearts(40);
@@ -2317,9 +2807,9 @@ function celebrate() {
 
 function toggleDark() {
 
-    document.body.classList.toggle(
-        "dark"
-    );
+    document.body
+        .classList
+        .toggle("dark");
 
 
     const button =
@@ -2329,17 +2819,20 @@ function toggleDark() {
 
 
     if (
-        document.body.classList.contains(
-            "dark"
-        )
+        document.body
+            .classList
+            .contains("dark")
     ) {
 
-        button.innerText = "☀️";
+        button.innerText =
+            "☀️";
 
     }
+
     else {
 
-        button.innerText = "🌙";
+        button.innerText =
+            "🌙";
 
     }
 
@@ -2356,7 +2849,11 @@ updateStats();
 
 drawCalendar();
 
+checkNotifications();
+
 </script>
 
+
 </body>
-       </html>
+
+    </html>
