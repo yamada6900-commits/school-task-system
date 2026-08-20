@@ -1,0 +1,10 @@
+{
+    "name": "My Cute Task",
+    "short_name": "Cute Task",
+    "description": "ระบบจัดการงานแสนน่ารัก",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#ffe4f1",
+    "theme_color": "#f9a8d4",
+    "orientation": "portrait"
+}
