@@ -2,87 +2,102 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>My Cute Task 🐰</title>
 
-<link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#f9a8d4">
+<link rel="manifest" href="./manifest.json">
 
 <style>
-
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
     margin:0;
-    min-height:100vh;
     font-family:Arial,sans-serif;
     color:#5b5368;
     background:linear-gradient(135deg,#ffdff0,#e8ddff,#dff5ff);
-    transition:.4s;
 }
 
 .container{
     width:94%;
-    max-width:900px;
+    max-width:850px;
     margin:20px auto;
+}
+
+.header,.card{
+    background:#ffffffee;
+    border:3px solid white;
+    border-radius:25px;
+    padding:20px;
+    margin-bottom:18px;
+    box-shadow:0 8px 25px #80608025;
 }
 
 .header{
     text-align:center;
-    padding:25px;
-    background:rgba(255,255,255,.95);
-    border-radius:30px;
-    border:4px solid white;
-    box-shadow:0 10px 30px rgba(100,70,130,.18);
+    position:relative;
 }
 
 .bunny{
-    font-size:75px;
-    animation:bounce 2s infinite;
+    font-size:70px;
 }
 
-@keyframes bounce{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-12px)}
+h1{color:#ec4899}
+h2{color:#db2777}
+
+input,select{
+    width:100%;
+    padding:13px;
+    margin:6px 0 12px;
+    border:3px solid #fbcfe8;
+    border-radius:14px;
+    font-size:16px;
 }
 
-h1{
-    color:#ec4899;
+button{
+    border:0;
+    padding:12px 16px;
+    margin:4px;
+    border-radius:14px;
+    font-size:15px;
+    cursor:pointer;
 }
 
-h2{
-    color:#db2777;
+.save,.notify{
+    width:100%;
+    color:white;
+    background:linear-gradient(135deg,#f472b6,#a78bfa);
 }
 
-.card{
-    margin-top:18px;
-    padding:22px;
-    background:rgba(255,255,255,.95);
-    border-radius:25px;
-    border:3px solid white;
-    box-shadow:0 8px 25px rgba(100,70,130,.13);
+.done{background:#93c5fd;color:white}
+.delete{background:#fca5a5;color:white}
+
+.task{
+    background:#fffaff;
+    border:3px solid #fce7f3;
+    border-radius:20px;
+    padding:18px;
+    margin:12px 0;
+}
+
+.completed{
+    opacity:.55;
+    text-decoration:line-through;
 }
 
 .stats{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin-top:18px;
+    gap:8px;
 }
 
 .stat{
-    padding:15px 5px;
     text-align:center;
-    border-radius:20px;
-    background:#fff;
+    padding:15px 5px;
+    border-radius:18px;
+    background:white;
 }
-
-.stat:nth-child(1){background:#ffe4f1}
-.stat:nth-child(2){background:#e8e0ff}
-.stat:nth-child(3){background:#dcfce7}
 
 .number{
     font-size:28px;
@@ -90,70 +105,8 @@ h2{
     color:#db2777;
 }
 
-.stat-icon{
-    font-size:30px;
-}
-
-label{
-    display:block;
-    margin-top:12px;
-    font-weight:bold;
-    color:#be185d;
-}
-
-input,select{
-    width:100%;
-    padding:13px;
-    margin-top:6px;
-    border:3px solid #fbcfe8;
-    border-radius:14px;
-    background:#fffafd;
-    font-size:16px;
-    outline:none;
-}
-
-button{
-    border:none;
-    padding:12px 16px;
-    margin:4px;
-    border-radius:14px;
-    cursor:pointer;
-    font-size:15px;
-    transition:.2s;
-}
-
-button:hover{
-    transform:translateY(-2px) scale(1.02);
-}
-
-.save{
-    width:100%;
-    color:white;
-    background:linear-gradient(135deg,#f472b6,#a78bfa);
-}
-
-.notify{
-    width:100%;
-    color:white;
-    background:linear-gradient(135deg,#fb7185,#c084fc);
-}
-
-.done{
-    background:#93c5fd;
-    color:white;
-}
-
-.edit{
-    background:#fde68a;
-}
-
-.delete{
-    background:#fca5a5;
-    color:white;
-}
-
 .progress{
-    height:28px;
+    height:25px;
     background:#f3e8ff;
     border-radius:20px;
     overflow:hidden;
@@ -161,183 +114,44 @@ button:hover{
 
 .progress-bar{
     height:100%;
-    width:0%;
+    width:0;
     background:linear-gradient(90deg,#f9a8d4,#c4b5fd,#93c5fd);
-    transition:.5s;
 }
 
 .percent{
     text-align:center;
-    font-size:38px;
-    font-weight:bold;
+    font-size:35px;
     color:#ec4899;
-}
-
-.task{
-    position:relative;
-    padding:18px;
-    margin:12px 0;
-    border-radius:20px;
-    background:#fffaff;
-    border:3px solid #fce7f3;
-}
-
-.task::after{
-    content:"🌸";
-    position:absolute;
-    right:15px;
-    top:10px;
-    font-size:25px;
-}
-
-.completed{
-    opacity:.55;
-    background:#f0fdf4;
-}
-
-.calendar-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.calendar-title{
     font-weight:bold;
-    font-size:21px;
-    color:#db2777;
 }
 
-.calendar-head button{
-    background:#fce7f3;
-}
-
-.weekdays,
 .calendar-grid{
     display:grid;
     grid-template-columns:repeat(7,1fr);
     gap:5px;
 }
 
-.weekday{
-    text-align:center;
-    font-weight:bold;
-    color:#be185d;
-    padding:7px 0;
-}
-
 .day{
-    min-height:65px;
-    padding:7px;
+    min-height:55px;
+    padding:6px;
     border-radius:12px;
     background:#fff7fb;
-    border:2px solid transparent;
-    cursor:pointer;
-}
-
-.day:hover{
-    background:#fce7f3;
+    font-size:12px;
 }
 
 .today{
-    border-color:#f472b6;
+    border:2px solid #f472b6;
 }
 
 .task-dot{
-    font-size:10px;
     color:#ec4899;
-    white-space:nowrap;
     overflow:hidden;
-}
-
-.mode{
-    position:absolute;
-    right:15px;
-    top:15px;
-    background:#fce7f3;
-    font-size:20px;
-}
-
-.header{
-    position:relative;
-}
-
-body.dark{
-    color:#eee;
-    background:linear-gradient(135deg,#24213b,#31244f,#172b3b);
-}
-
-body.dark .header,
-body.dark .card{
-    background:rgba(35,30,55,.96);
-}
-
-body.dark .task{
-    background:#302941;
-    border-color:#55426b;
-}
-
-body.dark .day{
-    background:#302941;
-}
-
-body.dark input,
-body.dark select{
-    background:#29243a;
-    color:white;
-}
-
-.floating{
-    position:fixed;
-    pointer-events:none;
-    z-index:9999;
-    font-size:28px;
-    animation:floatUp 1.5s forwards;
-}
-
-@keyframes floatUp{
-    from{
-        opacity:1;
-        transform:translateY(0) scale(.5);
-    }
-    to{
-        opacity:0;
-        transform:translateY(-130px) scale(1.5);
-    }
-}
-
-.walk{
-    position:fixed;
-    bottom:8px;
-    left:-70px;
-    font-size:50px;
-    animation:walk 18s linear infinite;
-    z-index:9998;
-}
-
-@keyframes walk{
-    0%{left:-70px}
-    48%{left:calc(100% - 50px)}
-    52%{left:calc(100% - 50px)}
-    100%{left:-70px}
+    white-space:nowrap;
 }
 
 @media(max-width:600px){
-
-    .stats{
-        gap:6px;
-    }
-
-    .number{
-        font-size:22px;
-    }
-
-    .day{
-        min-height:55px;
-        font-size:12px;
-    }
-
+    .number{font-size:22px}
 }
-
 </style>
 </head>
 
@@ -345,290 +159,309 @@ body.dark select{
 
 <div class="container">
 
-    <div class="header">
+<div class="header">
+    <div class="bunny">🐰</div>
+    <h1>🎀 My Cute Task 🎀</h1>
+    <p>สมุดจัดการงานแสนน่ารัก 💗</p>
+</div>
 
-        <button class="mode" onclick="toggleDark()">
-            🌙
-        </button>
+<div class="stats">
 
-        <div class="bunny">🐰</div>
+<div class="stat">
+    📝
+    <div class="number" id="total">0</div>
+    ทั้งหมด
+</div>
 
-        <h1>🎀 My Cute Task 🎀</h1>
+<div class="stat">
+    ⏰
+    <div class="number" id="remaining">0</div>
+    ค้าง
+</div>
 
-        <p>✨ สมุดจัดการ ✨</p>
+<div class="stat">
+    🌟
+    <div class="number" id="done">0</div>
+    เสร็จ
+</div>
 
-    </div>
+</div>
 
+<div class="card">
 
-    <div class="stats">
+<h2>📊 ความคืบหน้า</h2>
 
-        <div class="stat">
-            <div class="stat-icon">📝</div>
-            <div class="number" id="total">0</div>
-            งานทั้งหมด
-        </div>
+<div class="percent" id="percent">0%</div>
 
-        <div class="stat">
-            <div class="stat-icon">⏰</div>
-            <div class="number" id="remaining">0</div>
-            งานค้าง
-        </div>
+<div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
 
-        <div class="stat">
-            <div class="stat-icon">🌟</div>
-            <div class="number" id="done">0</div>
-            เสร็จแล้ว
-        </div>
+<p id="message">🌱 มาเริ่มกันเลย!</p>
 
-    </div>
+</div>
 
+<div class="card">
 
-    <div class="card">
+<h2>🔔 การแจ้งเตือน</h2>
 
-        <h2>🌈 ความคืบหน้า</h2>
+<p id="notificationStatus">
+ยังไม่ได้เปิดการแจ้งเตือน
+</p>
 
-        <div class="percent" id="percent">
-            0%
-        </div>
+<button
+    class="notify"
+    onclick="enableNotifications()"
+>
+🔔 เปิดการแจ้งเตือน
+</button>
 
-        <div class="progress">
+</div>
 
-            <div
-                class="progress-bar"
-                id="progressBar"
-            ></div>
+<div class="card">
 
-        </div>
+<h2>🌸 เพิ่มงาน</h2>
 
-        <p id="message">
-            🌱 มาเริ่มกันเลย!
-        </p>
+<label>📚 วิชา</label>
 
-    </div>
+<input
+    id="subject"
+    placeholder="เช่น คณิตศาสตร์"
+>
 
+<label>📝 ชื่องาน</label>
 
-    <div class="card">
+<input
+    id="task"
+    placeholder="เช่น แบบฝึกหัดบทที่ 3"
+>
 
-        <h2>🔔 การแจ้งเตือน</h2>
+<label>📅 วันส่ง</label>
 
-        <p>
-            เปิดการแจ้งเตือนเพื่อรับการแจ้งเตือนงานครับ 💗
-        </p>
+<input id="date" type="date">
 
-        <button
-            class="notify"
-            onclick="enableNotifications()"
-        >
-            🔔 เปิดการแจ้งเตือน
-        </button>
+<label>⏰ เวลาส่ง</label>
 
-    </div>
+<input id="time" type="time">
 
+<label>🔔 แจ้งเตือนก่อนส่ง</label>
 
-    <div class="card">
+<select id="reminder">
 
-        <h2>🌸 เพิ่มงานใหม่</h2>
+<option value="0">ไม่แจ้งเตือน</option>
+<option value="15">15 นาที</option>
+<option value="30">30 นาที</option>
+<option value="60" selected>1 ชั่วโมง</option>
+<option value="180">3 ชั่วโมง</option>
+<option value="360">6 ชั่วโมง</option>
+<option value="720">12 ชั่วโมง</option>
+<option value="1440">1 วัน</option>
+<option value="2880">2 วัน</option>
 
-        <label>📚 วิชา</label>
+</select>
 
-        <input
-            id="subject"
-            type="text"
-            placeholder="เช่น คณิตศาสตร์"
-        >
+<button class="save" onclick="addTask()">
+💖 เพิ่มงาน
+</button>
 
+</div>
 
-        <label>📝 ชื่องาน</label>
+<div class="card">
 
-        <input
-            id="task"
-            type="text"
-            placeholder="เช่น แบบฝึกหัดบทที่ 3"
-        >
+<h2>🔎 ค้นหางาน</h2>
 
+<input
+    id="search"
+    placeholder="ค้นหาวิชา หรือชื่องาน..."
+    oninput="showTasks()"
+>
 
-        <label>📅 วันส่ง</label>
+</div>
 
-        <input
-            id="date"
-            type="date"
-        >
+<div class="card">
 
+<h2>📋 งานของฉัน</h2>
 
-        <label>⏰ เวลาส่ง</label>
+<div id="taskList"></div>
 
-        <input
-            id="time"
-            type="time"
-        >
-
-
-        <label>🔔 แจ้งเตือนก่อนส่ง</label>
-
-        <select id="reminder">
-
-            <option value="0">
-                ไม่แจ้งเตือน
-            </option>
-
-            <option value="15">
-                15 นาที
-            </option>
-
-            <option value="30">
-                30 นาที
-            </option>
-
-            <option value="60" selected>
-                1 ชั่วโมง
-            </option>
-
-            <option value="180">
-                3 ชั่วโมง
-            </option>
-
-            <option value="360">
-                6 ชั่วโมง
-            </option>
-
-            <option value="720">
-                12 ชั่วโมง
-            </option>
-
-            <option value="1440">
-                1 วัน
-            </option>
-
-            <option value="2880">
-                2 วัน
-            </option>
-
-        </select>
-
-
-        <button
-            class="save"
-            onclick="addTask()"
-        >
-            💖 เพิ่มงาน
-        </button>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>📅 ปฏิทิน</h2>
-
-        <div class="calendar-head">
-
-            <button onclick="changeMonth(-1)">
-                ◀
-            </button>
-
-            <div
-                class="calendar-title"
-                id="calendarTitle"
-            ></div>
-
-            <button onclick="changeMonth(1)">
-                ▶
-            </button>
-
-        </div>
-
-        <br>
-
-        <div class="weekdays">
-
-            <div class="weekday">อา</div>
-            <div class="weekday">จ</div>
-            <div class="weekday">อ</div>
-            <div class="weekday">พ</div>
-            <div class="weekday">พฤ</div>
-            <div class="weekday">ศ</div>
-            <div class="weekday">ส</div>
-
-        </div>
-
-        <div
-            class="calendar-grid"
-            id="calendar"
-        ></div>
-
-        <div
-            id="selectedInfo"
-            style="
-                margin-top:15px;
-                padding:15px;
-                border-radius:15px;
-                background:#fff7fb;
-            "
-        >
-            💭 กดวันที่เพื่อดูงาน
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>🔎 ค้นหางาน</h2>
-
-        <input
-            id="search"
-            type="text"
-            placeholder="ค้นหาวิชา หรือชื่องาน..."
-            oninput="showTasks()"
-        >
-
-    </div>
-
-
-    <h2>🎀 งานของฉัน</h2>
-
-    <div id="taskList"></div>
-
-
-    <div
-        style="
-            text-align:center;
-            font-size:30px;
-            padding:30px;
-        "
-    >
-        🐰 🌸 💗 ✨ 🌷 💖
-    </div>
+</div>
 
 </div>
 
 
-<div class="walk">
-    🐰
-</div>
+<!-- Firebase -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getMessaging,
+    getToken,
+    onMessage
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-messaging.js";
+
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyDZPsuZO1FUo3Ojp1MvKE8uO8_5MclVfX4",
+
+    authDomain:
+    "school-task-system-7231f.firebaseapp.com",
+
+    projectId:
+    "school-task-system-7231f",
+
+    storageBucket:
+    "school-task-system-7231f.firebasestorage.app",
+
+    messagingSenderId:
+    "188906340182",
+
+    appId:
+    "1:188906340182:web:70faaf5b69c0bfaa6260f7",
+
+    measurementId:
+    "G-ZR9C7Q3WFG"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const messaging =
+    getMessaging(app);
+
+
+/* VAPID PUBLIC KEY */
+
+const VAPID_KEY =
+"BBgWVXmr5MN5Lnm6RYuciLtHDzqEFNsclHAMCBBGzrlaiSLfkCR0YREvhCM10xv5s-AN3cVAFeXiGwMSYcXeMQA";
+
+
+window.enableNotifications =
+async function(){
+
+    try{
+
+        const permission =
+            await Notification.requestPermission();
+
+        if(permission !== "granted"){
+
+            alert(
+                "🥺 ต้องอนุญาตการแจ้งเตือนก่อนครับ"
+            );
+
+            return;
+
+        }
+
+
+        const registration =
+            await navigator
+            .serviceWorker
+            .register(
+                "./firebase-messaging-sw.js"
+            );
+
+
+        const token =
+            await getToken(
+                messaging,
+                {
+                    vapidKey:VAPID_KEY,
+                    serviceWorkerRegistration:
+                        registration
+                }
+            );
+
+
+        if(token){
+
+            localStorage.setItem(
+                "fcmToken",
+                token
+            );
+
+            document
+            .getElementById(
+                "notificationStatus"
+            )
+            .innerText =
+            "✅ เปิดการแจ้งเตือนแล้วครับ 💗";
+
+            alert(
+                "🎉 เปิดการแจ้งเตือนสำเร็จแล้ว!"
+            );
+
+            console.log(
+                "FCM TOKEN:",
+                token
+            );
+
+        }
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "❌ เปิดแจ้งเตือนไม่สำเร็จ\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+onMessage(
+    messaging,
+    payload => {
+
+        alert(
+            "🔔 " +
+            (
+                payload.notification?.title
+                ||
+                "งานใกล้ถึงกำหนด!"
+            ) +
+            "\n\n" +
+            (
+                payload.notification?.body
+                ||
+                "มีงานที่ต้องส่งครับ 💗"
+            )
+        );
+
+    }
+);
+
+</script>
 
 
 <script>
 
 /* =========================
-   DATA
+   TASK SYSTEM
 ========================= */
 
 let tasks =
-    JSON.parse(
-        localStorage.getItem("tasks")
-    ) || [];
+JSON.parse(
+    localStorage.getItem("tasks")
+) || [];
 
 
-let calendarDate =
-    new Date();
-
-
-/* =========================
-   SAVE
-========================= */
-
-function saveTasks(){
+function save(){
 
     localStorage.setItem(
         "tasks",
@@ -638,246 +471,23 @@ function saveTasks(){
 }
 
 
-/* =========================
-   SERVICE WORKER
-========================= */
-
-if(
-    "serviceWorker" in navigator
-){
-
-    window.addEventListener(
-        "load",
-        function(){
-
-            navigator
-                .serviceWorker
-                .register("./sw.js")
-                .then(
-                    () => console.log(
-                        "🐰 Service Worker พร้อม"
-                    )
-                )
-                .catch(
-                    error => console.error(
-                        error
-                    )
-                );
-
-        }
-    );
-
-}
-
-
-/* =========================
-   NOTIFICATION
-========================= */
-
-async function enableNotifications(){
-
-    if(
-        !("Notification" in window)
-    ){
-
-        alert(
-            "🥺 อุปกรณ์นี้ไม่รองรับการแจ้งเตือน"
-        );
-
-        return;
-
-    }
-
-
-    const permission =
-        await Notification
-            .requestPermission();
-
-
-    if(
-        permission === "granted"
-    ){
-
-        alert(
-            "🔔 เปิดการแจ้งเตือนแล้วครับ 💗"
-        );
-
-        checkNotifications();
-
-    }
-
-    else{
-
-        alert(
-            "🥺 กรุณาอนุญาตการแจ้งเตือน"
-        );
-
-    }
-
-}
-
-
-/* =========================
-   CHECK REMINDER
-========================= */
-
-async function checkNotifications(){
-
-    if(
-        !("Notification" in window)
-    ) return;
-
-
-    if(
-        Notification.permission !==
-        "granted"
-    ) return;
-
-
-    const now =
-        new Date();
-
-
-    let changed = false;
-
-
-    for(
-        const item of tasks
-    ){
-
-        if(
-            item.completed ||
-            item.reminder === 0 ||
-            item.notified
-        ){
-            continue;
-        }
-
-
-        const deadline =
-            new Date(
-                item.date +
-                "T" +
-                item.time
-            );
-
-
-        const reminderTime =
-            item.reminder *
-            60 *
-            1000;
-
-
-        const difference =
-            deadline - now;
-
-
-        if(
-            difference > 0 &&
-            difference <= reminderTime
-        ){
-
-            item.notified = true;
-
-            changed = true;
-
-
-            try{
-
-                const registration =
-                    await navigator
-                        .serviceWorker
-                        .ready;
-
-
-                registration.showNotification(
-                    "🔔 งานใกล้ถึงกำหนด!",
-                    {
-                        body:
-                            item.subject +
-                            "\n" +
-                            item.task +
-                            "\n⏰ ส่ง " +
-                            item.time,
-
-                        icon:"./icon.png",
-
-                        badge:"./icon.png",
-
-                        vibrate:[
-                            200,
-                            100,
-                            200
-                        ]
-                    }
-                );
-
-            }catch(e){
-
-                alert(
-                    "🔔 งานใกล้ถึงกำหนด!\n\n" +
-                    item.subject +
-                    "\n" +
-                    item.task
-                );
-
-            }
-
-        }
-
-    }
-
-
-    if(changed){
-
-        saveTasks();
-
-    }
-
-}
-
-
-setInterval(
-    checkNotifications,
-    60000
-);
-
-
-/* =========================
-   ADD
-========================= */
-
 function addTask(){
 
     const subject =
-        document
-        .getElementById("subject")
-        .value.trim();
-
+        document.getElementById("subject").value.trim();
 
     const task =
-        document
-        .getElementById("task")
-        .value.trim();
-
+        document.getElementById("task").value.trim();
 
     const date =
-        document
-        .getElementById("date")
-        .value;
-
+        document.getElementById("date").value;
 
     const time =
-        document
-        .getElementById("time")
-        .value;
-
+        document.getElementById("time").value;
 
     const reminder =
         Number(
-            document
-            .getElementById("reminder")
-            .value
+            document.getElementById("reminder").value
         );
 
 
@@ -899,15 +509,11 @@ function addTask(){
 
     tasks.push({
 
-        subject:subject,
-
-        task:task,
-
-        date:date,
-
-        time:time,
-
-        reminder:reminder,
+        subject,
+        task,
+        date,
+        time,
+        reminder,
 
         completed:false,
 
@@ -916,54 +522,25 @@ function addTask(){
     });
 
 
-    saveTasks();
+    save();
 
     showTasks();
 
     updateStats();
 
-    drawCalendar();
 
-
-    document
-        .getElementById("subject")
-        .value = "";
-
-
-    document
-        .getElementById("task")
-        .value = "";
-
-
-    document
-        .getElementById("date")
-        .value = "";
-
-
-    document
-        .getElementById("time")
-        .value = "";
-
-
-    document
-        .getElementById("reminder")
-        .value = "60";
-
-
-    hearts(10);
+    document.getElementById("subject").value="";
+    document.getElementById("task").value="";
+    document.getElementById("date").value="";
+    document.getElementById("time").value="";
 
 }
 
 
-/* =========================
-   SHOW
-========================= */
-
 function showTasks(){
 
     const list =
-        document
-        .getElementById("taskList");
+        document.getElementById("taskList");
 
 
     const search =
@@ -973,40 +550,22 @@ function showTasks(){
         .toLowerCase();
 
 
-    list.innerHTML = "";
+    list.innerHTML="";
 
 
     const filtered =
         tasks.filter(
-            item =>
-                item.subject
-                .toLowerCase()
-                .includes(search)
-                ||
-                item.task
-                .toLowerCase()
-                .includes(search)
+            x =>
+            x.subject.toLowerCase().includes(search)
+            ||
+            x.task.toLowerCase().includes(search)
         );
 
 
-    if(
-        filtered.length === 0
-    ){
+    if(filtered.length===0){
 
-        list.innerHTML = `
-
-            <div class="card"
-                 style="text-align:center">
-
-                🐰
-
-                <br><br>
-
-                ยังไม่มีงานครับ 💗
-
-            </div>
-
-        `;
+        list.innerHTML =
+        "<p style='text-align:center'>🐰 ยังไม่มีงานครับ 💗</p>";
 
         return;
 
@@ -1020,91 +579,58 @@ function showTasks(){
                 tasks.indexOf(item);
 
 
-            const reminderText =
-                getReminderText(
-                    item.reminder
-                );
-
-
             list.innerHTML += `
 
-                <div
-                    class="task
+            <div class="task ${
+                item.completed
+                ? "completed"
+                : ""
+            }">
+
+                <h3>
                     ${
                         item.completed
-                        ? "completed"
-                        : ""
-                    }"
-                >
-
-                    <h3>
-                        ${
-                            item.completed
-                            ? "🌟"
-                            : "🌸"
-                        }
-
-                        ${item.subject}
-                    </h3>
-
-                    <p>
-                        📝 ${item.task}
-                    </p>
-
-                    <p>
-                        📅 ${item.date}
-                        <br>
-                        ⏰ ${item.time}
-                    </p>
-
-                    <p>
-                        🔔 ${reminderText}
-                    </p>
-
-
-                    ${
-                        item.completed
-                        ? "<p>🎉 ทำเสร็จแล้ว!</p>"
-                        :
-                        `
-                        <button
-                            class="done"
-                            onclick="
-                                completeTask(
-                                    ${index}
-                                )
-                            "
-                        >
-                            ✅ เสร็จแล้ว
-                        </button>
-                        `
+                        ? "🌟"
+                        : "🌸"
                     }
+                    ${item.subject}
+                </h3>
 
+                <p>📝 ${item.task}</p>
 
+                <p>
+                    📅 ${item.date}
+                    <br>
+                    ⏰ ${item.time}
+                </p>
+
+                <p>
+                    🔔 ${reminderText(item.reminder)}
+                </p>
+
+                ${
+                    !item.completed
+                    ?
+                    `
                     <button
-                        class="edit"
-                        onclick="
-                            editTask(
-                                ${index}
-                            )
-                        "
+                        class="done"
+                        onclick="completeTask(${index})"
                     >
-                        ✏️ แก้ไข
+                        ✅ เสร็จแล้ว
                     </button>
+                    `
+                    :
+                    "🎉 ทำเสร็จแล้ว!"
+                }
 
+                <button
+                    class="delete"
+                    onclick="deleteTask(${index})"
+                >
+                    🗑️ ลบ
+                </button>
 
-                    <button
-                        class="delete"
-                        onclick="
-                            deleteTask(
-                                ${index}
-                            )
-                        "
-                    >
-                        🗑️ ลบ
-                    </button>
-
-                </div>
+            </div>
 
             `;
 
@@ -1114,663 +640,116 @@ function showTasks(){
 }
 
 
-/* =========================
-   REMINDER TEXT
-========================= */
+function reminderText(x){
 
-function getReminderText(value){
-
-    const map = {
+    const a={
 
         0:"ไม่แจ้งเตือน",
-
         15:"15 นาที",
-
         30:"30 นาที",
-
         60:"1 ชั่วโมง",
-
         180:"3 ชั่วโมง",
-
         360:"6 ชั่วโมง",
-
         720:"12 ชั่วโมง",
-
         1440:"1 วัน",
-
         2880:"2 วัน"
 
     };
 
-
-    return map[value] ||
-        "ไม่แจ้งเตือน";
+    return a[x] || "ไม่แจ้งเตือน";
 
 }
 
 
-/* =========================
-   COMPLETE
-========================= */
-
 function completeTask(index){
 
-    tasks[index].completed = true;
+    tasks[index].completed=true;
 
-    saveTasks();
+    save();
 
     showTasks();
 
     updateStats();
 
-    drawCalendar();
-
-    hearts(20);
-
 }
 
-
-/* =========================
-   DELETE
-========================= */
 
 function deleteTask(index){
 
     if(
-        confirm(
-            "🗑️ ลบงานนี้ไหมครับ?"
-        )
+        confirm("🗑️ ลบงานนี้ไหมครับ?")
     ){
 
-        tasks.splice(
-            index,
-            1
-        );
+        tasks.splice(index,1);
 
-        saveTasks();
+        save();
 
         showTasks();
 
         updateStats();
 
-        drawCalendar();
-
     }
 
 }
 
-
-/* =========================
-   EDIT
-========================= */
-
-function editTask(index){
-
-    const item =
-        tasks[index];
-
-
-    const subject =
-        prompt(
-            "📚 วิชา",
-            item.subject
-        );
-
-    if(subject === null) return;
-
-
-    const task =
-        prompt(
-            "📝 ชื่องาน",
-            item.task
-        );
-
-    if(task === null) return;
-
-
-    const date =
-        prompt(
-            "📅 วันส่ง YYYY-MM-DD",
-            item.date
-        );
-
-    if(date === null) return;
-
-
-    const time =
-        prompt(
-            "⏰ เวลา HH:MM",
-            item.time
-        );
-
-    if(time === null) return;
-
-
-    item.subject =
-        subject.trim();
-
-    item.task =
-        task.trim();
-
-    item.date =
-        date.trim();
-
-    item.time =
-        time.trim();
-
-    item.notified =
-        false;
-
-
-    saveTasks();
-
-    showTasks();
-
-    updateStats();
-
-    drawCalendar();
-
-}
-
-
-/* =========================
-   STATS
-========================= */
 
 function updateStats(){
 
     const total =
         tasks.length;
 
-
     const done =
         tasks.filter(
-            item =>
-                item.completed
+            x=>x.completed
         ).length;
 
-
     const remaining =
-        total - done;
-
+        total-done;
 
     const percent =
-        total === 0
-        ? 0
-        :
-        Math.round(
-            done /
-            total *
-            100
+        total===0
+        ?0
+        :Math.round(
+            done/total*100
         );
 
 
-    document
-        .getElementById("total")
-        .innerText =
-        total;
+    document.getElementById("total")
+    .innerText=total;
 
 
-    document
-        .getElementById("remaining")
-        .innerText =
-        remaining;
+    document.getElementById("done")
+    .innerText=done;
 
 
-    document
-        .getElementById("done")
-        .innerText =
-        done;
+    document.getElementById("remaining")
+    .innerText=remaining;
 
 
-    document
-        .getElementById("percent")
-        .innerText =
-        percent + "%";
+    document.getElementById("percent")
+    .innerText=percent+"%";
 
 
-    document
-        .getElementById("progressBar")
-        .style.width =
-        percent + "%";
+    document.getElementById("progressBar")
+    .style.width=percent+"%";
 
 
-    const message =
-        document
-        .getElementById("message");
-
-
-    if(total === 0){
-
-        message.innerText =
-            "🌱 มาเริ่มกันเลย!";
-
-    }
-    else if(percent < 30){
-
-        message.innerText =
-            "🌱 ค่อย ๆ ทำไปนะ!";
-
-    }
-    else if(percent < 70){
-
-        message.innerText =
-            "🌸 เก่งมาก!";
-
-    }
-    else if(percent < 100){
-
-        message.innerText =
-            "✨ ใกล้เสร็จแล้ว!";
-
-    }
-    else{
-
-        message.innerText =
-            "🎉 เสร็จหมดแล้ว!";
-
-    }
+    document.getElementById("message")
+    .innerText =
+        percent===100
+        ? "🎉 เก่งมาก! เสร็จหมดแล้ว!"
+        : percent>=50
+        ? "✨ ใกล้เสร็จแล้ว!"
+        : "🌱 ค่อย ๆ ทำไปนะ!";
 
 }
 
-
-/* =========================
-   CALENDAR
-========================= */
-
-const months = [
-
-    "มกราคม",
-    "กุมภาพันธ์",
-    "มีนาคม",
-    "เมษายน",
-    "พฤษภาคม",
-    "มิถุนายน",
-    "กรกฎาคม",
-    "สิงหาคม",
-    "กันยายน",
-    "ตุลาคม",
-    "พฤศจิกายน",
-    "ธันวาคม"
-
-];
-
-
-function dateString(
-    year,
-    month,
-    day
-){
-
-    return (
-
-        year +
-        "-" +
-        String(month + 1)
-        .padStart(2,"0") +
-        "-" +
-        String(day)
-        .padStart(2,"0")
-
-    );
-
-}
-
-
-function drawCalendar(){
-
-    const calendar =
-        document
-        .getElementById("calendar");
-
-
-    const title =
-        document
-        .getElementById(
-            "calendarTitle"
-        );
-
-
-    const year =
-        calendarDate
-        .getFullYear();
-
-
-    const month =
-        calendarDate
-        .getMonth();
-
-
-    title.innerText =
-        months[month] +
-        " " +
-        (year + 543);
-
-
-    calendar.innerHTML = "";
-
-
-    const first =
-        new Date(
-            year,
-            month,
-            1
-        ).getDay();
-
-
-    const days =
-        new Date(
-            year,
-            month + 1,
-            0
-        ).getDate();
-
-
-    for(
-        let i=0;
-        i<first;
-        i++
-    ){
-
-        calendar.innerHTML +=
-            "<div></div>";
-
-    }
-
-
-    const today =
-        new Date();
-
-
-    for(
-        let day=1;
-        day<=days;
-        day++
-    ){
-
-        const date =
-            dateString(
-                year,
-                month,
-                day
-            );
-
-
-        const dayTasks =
-            tasks.filter(
-                item =>
-                    item.date === date
-            );
-
-
-        let todayClass = "";
-
-
-        if(
-            today.getFullYear() === year &&
-            today.getMonth() === month &&
-            today.getDate() === day
-        ){
-
-            todayClass =
-                "today";
-
-        }
-
-
-        let dots = "";
-
-
-        dayTasks
-            .slice(0,2)
-            .forEach(
-                item => {
-
-                    dots += `
-
-                        <div
-                            class="task-dot"
-                        >
-                            🌸 ${item.subject}
-                        </div>
-
-                    `;
-
-                }
-            );
-
-
-        calendar.innerHTML += `
-
-            <div
-                class="day ${todayClass}"
-                onclick="
-                    selectDate(
-                        '${date}'
-                    )
-                "
-            >
-
-                <strong>
-                    ${day}
-                </strong>
-
-                ${dots}
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-function changeMonth(amount){
-
-    calendarDate.setMonth(
-        calendarDate.getMonth()
-        + amount
-    );
-
-    drawCalendar();
-
-}
-
-
-function selectDate(date){
-
-    const box =
-        document
-        .getElementById(
-            "selectedInfo"
-        );
-
-
-    const found =
-        tasks.filter(
-            item =>
-                item.date === date
-        );
-
-
-    if(found.length === 0){
-
-        box.innerHTML = `
-            🌷 ${date}
-            <br><br>
-            📭 ไม่มีงานครับ
-        `;
-
-        return;
-
-    }
-
-
-    let html = `
-        <strong>
-            🌸 งานวันที่ ${date}
-        </strong>
-        <br><br>
-    `;
-
-
-    found.forEach(
-        item => {
-
-            html += `
-
-                <div
-                    style="
-                        padding:10px;
-                        margin:5px 0;
-                        background:white;
-                        border-radius:12px;
-                    "
-                >
-
-                    ${
-                        item.completed
-                        ? "🌟"
-                        : "📌"
-                    }
-
-                    ${item.subject}
-
-                    <br>
-
-                    📝 ${item.task}
-
-                    <br>
-
-                    ⏰ ${item.time}
-
-                </div>
-
-            `;
-
-        }
-    );
-
-
-    box.innerHTML =
-        html;
-
-}
-
-
-/* =========================
-   DARK
-========================= */
-
-function toggleDark(){
-
-    document.body
-        .classList
-        .toggle("dark");
-
-
-    const button =
-        document.querySelector(
-            ".mode"
-        );
-
-
-    button.innerText =
-        document.body
-        .classList
-        .contains("dark")
-        ? "☀️"
-        : "🌙";
-
-}
-
-
-/* =========================
-   HEART EFFECT
-========================= */
-
-function hearts(amount){
-
-    for(
-        let i=0;
-        i<amount;
-        i++
-    ){
-
-        setTimeout(
-            () => {
-
-                const heart =
-                    document
-                    .createElement("div");
-
-
-                heart.className =
-                    "floating";
-
-
-                const emojis = [
-                    "💗",
-                    "💖",
-                    "💕",
-                    "✨",
-                    "🌸"
-                ];
-
-
-                heart.innerText =
-                    emojis[
-                        Math.floor(
-                            Math.random()
-                            * emojis.length
-                        )
-                    ];
-
-
-                heart.style.left =
-                    Math.random()*90 +
-                    "%";
-
-
-                heart.style.bottom =
-                    "80px";
-
-
-                document.body
-                    .appendChild(
-                        heart
-                    );
-
-
-                setTimeout(
-                    () =>
-                        heart.remove(),
-                    1500
-                );
-
-            },
-            i*70
-        );
-
-    }
-
-}
-
-
-/* =========================
-   START
-========================= */
 
 showTasks();
 
 updateStats();
 
-drawCalendar();
-
-checkNotifications();
-
 </script>
 
 </body>
-    </html>
+</html>
